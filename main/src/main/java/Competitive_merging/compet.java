@@ -6,5 +6,9 @@ public class compet {
 	//imen on second 
 // Noeline first !!
 // J-m 2eme
+<<<<<<< HEAD
 // Z'etes nul. C'moi qui gagnerais la guerre
+=======
+	// va te ...
+>>>>>>> branch 'master' of https://github.com/Erongu/Lorann.git
 }
