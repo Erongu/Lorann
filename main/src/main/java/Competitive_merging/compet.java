@@ -6,5 +6,6 @@ public class compet {
 	//imen on second 
 // Noeline first !!
 // J-m 2eme
+	// va te ...
 }
 //tugf
