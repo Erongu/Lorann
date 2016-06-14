@@ -2,6 +2,10 @@ package Competitive_merging;
 
 public class compet {
 // Noeline first !!
-//fuck thug 
+	//Second !!
 	//imen on second 
+// Noeline first !!
+// J-m 2eme
+	//fuck thug 
 }
+//tugf
