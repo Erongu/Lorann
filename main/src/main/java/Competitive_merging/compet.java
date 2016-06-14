@@ -9,3 +9,4 @@ public class compet {
 	// va te ...
 }
 //tugf
+//jgfuyh
