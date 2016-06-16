@@ -11,16 +11,11 @@ import javax.swing.JOptionPane;
 import contract.IController;
 import contract.IModel;
 
-/**
- * The Class ViewFrame.
- *
- * @author Jean-Aymeric Diet
- */
 class ViewFrame extends JFrame implements KeyListener {
 
 	/** The model. */
 	private IModel						model;
-
+	private Canvas Canvas;
 	/** The controller. */
 	private IController				controller;
 	/** The Constant serialVersionUID. */
@@ -34,6 +29,9 @@ class ViewFrame extends JFrame implements KeyListener {
 	 * @throws HeadlessException
 	 *           the headless exception
 	 */
+	
+	canvas = new Canvas();
+	canvas.setPreferredSize(new Dimension(width, height));
 	public ViewFrame(final IModel model) throws HeadlessException {
 		this.buildViewFrame(model);
 	}
@@ -128,7 +126,7 @@ class ViewFrame extends JFrame implements KeyListener {
 	private void buildViewFrame(final IModel model) {
 		this.setModel(model);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setResizable(false);
+		this.setResizable(true);
 		this.addKeyListener(this);
 		this.setContentPane(new ViewPanel(this));
 		this.setSize(400 + this.getInsets().left + this.getInsets().right, 60 + this.getInsets().top + this.getInsets().bottom);

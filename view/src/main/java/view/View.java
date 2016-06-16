@@ -9,11 +9,6 @@ import contract.IController;
 import contract.IModel;
 import contract.IView;
 
-/**
- * The Class View.
- *
- * @author Jean-Aymeric Diet
- */
 public class View implements IView, Runnable {
 
 	/** The frame. */
@@ -29,7 +24,6 @@ public class View implements IView, Runnable {
 		this.viewFrame = new ViewFrame(model);
 		SwingUtilities.invokeLater(this);
 	}
-
 	/**
 	 * Key code to controller order.
 	 *
@@ -51,7 +45,6 @@ public class View implements IView, Runnable {
 				return ControllerOrder.English;
 		}
 	}
-
 	/*
 	 * (non-Javadoc)
 	 *
@@ -60,7 +53,6 @@ public class View implements IView, Runnable {
 	public void printMessage(final String message) {
 		this.viewFrame.printMessage(message);
 	}
-
 	/*
 	 * (non-Javadoc)
 	 *
@@ -69,7 +61,6 @@ public class View implements IView, Runnable {
 	public void run() {
 		this.viewFrame.setVisible(true);
 	}
-
 	/**
 	 * Sets the controller.
 	 *
