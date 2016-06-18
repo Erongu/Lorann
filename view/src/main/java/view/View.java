@@ -2,6 +2,9 @@ package view;
 
 import java.awt.event.KeyEvent;
 
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import contract.ControllerOrder;
@@ -70,4 +73,18 @@ public class View implements IView, Runnable {
 	public void setController(final IController controller) {
 		this.viewFrame.setController(controller);
 	}
+	
+	
+	
+	public void CreateSprite(){
+	    JPanel spriteB = new JPanel();
+	    JLabel labell1 = new JLabel();
+	    labell1.setIcon(new ImageIcon("C:/sprite/bone.png"));
+	    labell1.setLocation(10, 10);
+	    labell1.setSize(32, 32);
+	    spriteB.add(labell1);
+	    this.viewFrame.setLayout(null);
+	    this.viewFrame.add(spriteB);
+	}
+
 }

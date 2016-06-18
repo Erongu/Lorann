@@ -1,8 +1,10 @@
 package view;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.Graphics;
+import java.awt.Toolkit;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -29,19 +31,11 @@ class ViewPanel extends JPanel implements Observer {
 	 */
 	public ViewPanel(final ViewFrame viewFrame) {
 		this.setViewFrame(viewFrame);
-		
+
 		viewFrame.getModel().getObservable().addObserver(this);
 		setBorder(BorderFactory.createLineBorder(Color.red,1));
 		setBackground(Color.black);
-		
-	
-		JLabel labell = new JLabel();
-		labell.setIcon(new ImageIcon("C:/vertical_bone.png"));
-		this.add(labell);
-		setLayout(null);
-		labell.setLocation(0,0);
-		labell.setSize(32,32);
-		
+
 		
 	}
 	
@@ -62,6 +56,7 @@ class ViewPanel extends JPanel implements Observer {
 	 */
 	private void setViewFrame(final ViewFrame viewFrame) {
 		this.viewFrame = viewFrame;
+		
 	}
 
 	/*
@@ -83,6 +78,8 @@ class ViewPanel extends JPanel implements Observer {
 		// graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
 		graphics.drawString(this.getViewFrame().getModel().getMessage(), 10, 20);
 		// ((Frame) graphics).setBackground(Color.BLACK);
+		
+
 	}
 	
 }

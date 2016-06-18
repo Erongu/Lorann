@@ -1,5 +1,8 @@
 package controller;
 
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
 import contract.ControllerOrder;
 import contract.IController;
 import contract.IModel;
@@ -34,7 +37,17 @@ public class Controller implements IController {
 	 * @see contract.IController#control()
 	 */
 	public void control() {
-		this.view.printMessage("Appuyer sur les touches 'E', 'F', 'D' ou 'I', pour afficher Hello world dans la langue d votre choix.");
+		
+		//this.view.printMessage("Appuyer sur les touches 'E', 'F', 'D' ou 'I', pour afficher Hello world dans la langue d votre choix.");
+		
+		JLabel labell = new JLabel();
+		labell.setIcon(new ImageIcon("C:/vertical_bone.png"));
+		this.view.CreateSprite();
+		
+		//this.view.setLayout(null);
+		labell.setLocation(0,0);
+		labell.setSize(32,32);
+	
 	}
 
 	/**

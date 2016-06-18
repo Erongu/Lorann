@@ -1,8 +1,10 @@
 package view;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GraphicsConfiguration;
 import java.awt.HeadlessException;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -37,25 +39,29 @@ class ViewFrame extends JFrame implements KeyListener {
 	 *           the headless exception
 	 */
 	
-	
+	//	Paramètrer la fenêtre.
 	public ViewFrame(final IModel model) throws HeadlessException {
-		this.buildViewFrame(model);
+		
+		this.buildViewFrame( model );
+		
 		setSize(800,600);
 		setResizable(true);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	
 		
+		//	NW_MODIF : Background color of the main windows.
+		setBackground( Color.BLACK );
+		
+		//	NW_MODIF - Place the windows in center.
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		this.setLocation( dim.width/ 2 - this.getWidth() /2, dim.height / 2 - this.getHeight() /2 );
+
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
 		JMenuBar menuBar = new JMenuBar();
 		 
 		JMenuItem menu1 = new JMenuItem("Levels");
-	
 		
 		JMenuItem menuItem1 = new JMenuItem("Level 1");
-		
 		JMenuItem menuItem2 = new JMenuItem("Level 2");
-		
 		JMenuItem menuItem3 = new JMenuItem("Level 3");
-	
 		
 		menu1.add(menuItem1);
 		menu1.add(menuItem2);
