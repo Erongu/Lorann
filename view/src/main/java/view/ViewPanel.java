@@ -1,9 +1,17 @@
 package view;
 
+import java.awt.Color;
+import java.awt.Frame;
 import java.awt.Graphics;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
 class ViewPanel extends JPanel implements Observer {
@@ -21,9 +29,22 @@ class ViewPanel extends JPanel implements Observer {
 	 */
 	public ViewPanel(final ViewFrame viewFrame) {
 		this.setViewFrame(viewFrame);
+		
 		viewFrame.getModel().getObservable().addObserver(this);
+		setBorder(BorderFactory.createLineBorder(Color.red,1));
+		setBackground(Color.black);
+		
+	
+		JLabel labell = new JLabel();
+		labell.setIcon(new ImageIcon("C:/vertical_bone.png"));
+		this.add(labell);
+		setLayout(null);
+		labell.setLocation(0,0);
+		labell.setSize(32,32);
+		
+		
 	}
-
+	
 	/**
 	 * Gets the view frame.
 	 *
@@ -59,7 +80,9 @@ class ViewPanel extends JPanel implements Observer {
 	 */
 	@Override
 	protected void paintComponent(final Graphics graphics) {
-		graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
+		// graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
 		graphics.drawString(this.getViewFrame().getModel().getMessage(), 10, 20);
+		// ((Frame) graphics).setBackground(Color.BLACK);
 	}
+	
 }
