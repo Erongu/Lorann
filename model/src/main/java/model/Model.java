@@ -21,6 +21,9 @@ public class Model extends Observable implements IModel {
 
 	/** The message. */
 	private String message;
+	
+	public ArrayList<String> spritelist;
+	
 	private int IDmap;
 
 	public int getIDmap() {
@@ -73,13 +76,12 @@ public class Model extends Observable implements IModel {
 		}
 	}
 
-	public ArrayList<String> loadMap () { 
+	public void loadMap () { 
 		int ID_Map = this.getIDmap();
-        ArrayList<String> spritelist = new ArrayList<String>();
+		spritelist = new ArrayList<String>();
 		try {
 			Connection cnx = jpublankprojectDB();
 			
-		    
 		    Statement stmt = null;
 		    String query = "select ID_Object, ID_Map, ID_Type, " +
 		                   "AXIS_X, AXIS_Y " +
@@ -92,9 +94,6 @@ public class Model extends Observable implements IModel {
 	        while (rs.next()) {
 	            String typeId = rs.getString("ID_Type");
 	            spritelist.add(typeId);
-	            
-	            //System.out.println( typeId );
-	            String picture = "";
 	        }
 	        
 
@@ -102,7 +101,7 @@ public class Model extends Observable implements IModel {
 		} catch (final SQLException e) {
 			e.printStackTrace();
 		}
-		return spritelist;
+		return;
 	}
 	
 	
