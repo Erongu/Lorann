@@ -73,34 +73,32 @@ public class Controller implements IController {
 	 * @see contract.IController#orderPerform(contract.ControllerOrder)
 	 */
 	public void orderPerform(final ControllerOrder controllerOrder) {
-		ArrayList<String> spritelist = null;
 		switch (controllerOrder) {
 			case Level1:
 				this.model.setIDmap(1);
-				spritelist = this.model.loadMap();
+				this.model.loadMap();
 				break;
 			case Level2:
 				this.model.setIDmap(2);
-				spritelist = this.model.loadMap();
+				this.model.loadMap();
 				break;
 			case Level3:
 				this.model.setIDmap(3);
-				spritelist = this.model.loadMap();
+				this.model.loadMap();
 				break;
 			case Level4:
 				this.model.setIDmap(4);
-				spritelist = this.model.loadMap();
+				this.model.loadMap();
 				break;
 			case Level5:
 				this.model.setIDmap(5);
-				spritelist = this.model.loadMap();
+				this.model.loadMap();
 				break;
 			default:
 				this.model.setIDmap(0);
-				spritelist = this.model.loadMap();
+				this.model.loadMap();
 				break;
 		}
-		System.out.println(spritelist.toString());	
 	}
 
 }

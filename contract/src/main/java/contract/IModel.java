@@ -25,7 +25,7 @@ public interface IModel {
 	 */
 	void loadMessage(String key);
 	
-	public ArrayList<String> loadMap ();
+	public void loadMap ();
 	
 	public void setIDmap(int iDmap);
 	
