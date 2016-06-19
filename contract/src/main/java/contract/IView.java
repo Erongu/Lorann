@@ -14,5 +14,6 @@ public interface IView {
 	 *          the message
 	 */
 	void printMessage(final String message);
-	void CreateSprite();
+	void CreateSprite( int x, int y);
 }
+

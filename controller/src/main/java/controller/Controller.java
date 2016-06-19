@@ -13,7 +13,7 @@ import contract.IView;
 public class Controller implements IController {
 
 	/** The view. */
-	private IView		view;
+	private IView	view;
 
 	/** The model. */
 	private IModel	model;
@@ -40,13 +40,9 @@ public class Controller implements IController {
 		
 		//this.view.printMessage("Appuyer sur les touches 'E', 'F', 'D' ou 'I', pour afficher Hello world dans la langue d votre choix.");
 		
-		JLabel labell = new JLabel();
-		labell.setIcon(new ImageIcon("C:/vertical_bone.png"));
-		this.view.CreateSprite();
+		System.out.println("Controller.control()" );
 		
-		//this.view.setLayout(null);
-		labell.setLocation(0,0);
-		labell.setSize(32,32);
+		view.CreateSprite(0, 0);
 	
 	}
 
@@ -93,6 +89,10 @@ public class Controller implements IController {
 			default:
 				break;
 		}
+		
+		
+		//view.CreateSprite(0, 0);
+		
 	}
 
 }

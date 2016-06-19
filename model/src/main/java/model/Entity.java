@@ -1,10 +1,12 @@
 package model;
 
 /**
- * The Class Entity.
+ * The Class Sprite.
  *
- * @author Jean-Aymeric Diet
+ * @author NW
  */
 abstract class Entity {
+	
+	
 
 }

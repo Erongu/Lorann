@@ -55,35 +55,10 @@ class ViewFrame extends JFrame implements KeyListener {
 		this.setLocation( dim.width/ 2 - this.getWidth() /2, dim.height / 2 - this.getHeight() /2 );
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
-		JMenuBar menuBar = new JMenuBar();
-		 
-		JMenuItem menu1 = new JMenuItem("Levels");
 		
-		JMenuItem menuItem1 = new JMenuItem("Level 1");
-		JMenuItem menuItem2 = new JMenuItem("Level 2");
-		JMenuItem menuItem3 = new JMenuItem("Level 3");
+		//	Add Menu for level selection.
+		setJMenuBar( new MenuSwing() );
 		
-		menu1.add(menuItem1);
-		menu1.add(menuItem2);
-		menu1.add(menuItem3);
-		menuBar.add(menu1);
-		
-		setJMenuBar(new MenuSwing());
-		
-		menuItem1.addActionListener(new ActionListener()
-				{
-			public void actionPerformed(ActionEvent e){
-				// cardL.nest(content);
-			}});
-		
-		/*JMenuItem menu2 = new JMenuItem("Level 2");
-		menuBar.add(menu2);
-		JMenuItem menu3 = new JMenuItem("Level 3");
-		menuBar.add(menu3);
-		JMenuItem menu4 = new JMenuItem("Level 4");
-		menuBar.add(menu4);
-		JMenuItem menu5 = new JMenuItem("Level 5");
-		menuBar.add(menu5);*/
 	}
 	
 
@@ -175,13 +150,23 @@ class ViewFrame extends JFrame implements KeyListener {
 	 *          the model
 	 */
 	private void buildViewFrame(final IModel model) {
-		this.setModel(model);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		System.out.println("buildViewFrame() - this = " + this.toString() );
+		
+		this.setLayout(null);
+		
+		this.setModel( model );
+		
+		this.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
 		this.setResizable(true);
 		this.addKeyListener(this);
+		
+		ViewPanel vPanel = new ViewPanel(this);
+		
 		this.setContentPane(new ViewPanel(this));
-		this.setSize(400 + this.getInsets().left + this.getInsets().right, 60 + this.getInsets().top + this.getInsets().bottom);
-		this.setLocationRelativeTo(null);
+		
+		//this.setSize( 400 + this.getInsets().left + this.getInsets().right, 60 + this.getInsets().top + this.getInsets().bottom);
+		this.setLocationRelativeTo( null );
 	}
 
 	/**

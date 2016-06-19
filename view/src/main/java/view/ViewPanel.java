@@ -19,7 +19,7 @@ import javax.swing.JPanel;
 class ViewPanel extends JPanel implements Observer {
 
 	/** The view frame. */
-	private ViewFrame					viewFrame;
+	private ViewFrame	viewFrame;
 	/** The Constant serialVersionUID. */
 	private static final long	serialVersionUID	= -998294702363713521L;
 
@@ -30,13 +30,24 @@ class ViewPanel extends JPanel implements Observer {
 	 *          the view frame
 	 */
 	public ViewPanel(final ViewFrame viewFrame) {
-		this.setViewFrame(viewFrame);
 
-		viewFrame.getModel().getObservable().addObserver(this);
-		setBorder(BorderFactory.createLineBorder(Color.red,1));
-		setBackground(Color.black);
-
+		System.out.println("ViewPanel() : " + viewFrame.toString() );
 		
+		setBorder( BorderFactory.createLineBorder(Color.blue,2) );
+		
+		//	MW_HS :
+		setLayout(null);
+		viewFrame.setLayout(null);
+	    JPanel spriteB = new JPanel();
+	    JLabel labell1 = new JLabel();
+	    labell1.setIcon(new ImageIcon("C:/sprite/bone.png"));
+	    labell1.setLocation( 0, 0);
+	    labell1.setSize(32, 32);
+	    spriteB.add(labell1);
+	    viewFrame.add( spriteB );	
+	    
+		this.setViewFrame(viewFrame);
+		viewFrame.getModel().getObservable().addObserver(this);
 	}
 	
 	/**
@@ -56,7 +67,6 @@ class ViewPanel extends JPanel implements Observer {
 	 */
 	private void setViewFrame(final ViewFrame viewFrame) {
 		this.viewFrame = viewFrame;
-		
 	}
 
 	/*
@@ -65,6 +75,9 @@ class ViewPanel extends JPanel implements Observer {
 	 * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
 	 */
 	public void update(final Observable arg0, final Object arg1) {
+		
+		System.out.println("ViewPanel.update()");
+		
 		this.repaint();
 	}
 
@@ -75,10 +88,23 @@ class ViewPanel extends JPanel implements Observer {
 	 */
 	@Override
 	protected void paintComponent(final Graphics graphics) {
-		// graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
-		graphics.drawString(this.getViewFrame().getModel().getMessage(), 10, 20);
-		// ((Frame) graphics).setBackground(Color.BLACK);
 		
+		System.out.println("ViewPanel.paintComponent( ) : " + graphics.toString());
+		
+		//graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
+		graphics.drawString( "Message" /*this.getViewFrame().getModel().getMessage()*/, 10, 20) ;
+		
+		setLayout(null);
+		
+		//System.out.println( "CreateSprite()" );
+	    JPanel spriteB = new JPanel();
+	    JLabel labell1 = new JLabel();
+	    labell1.setIcon(new ImageIcon("C:/sprite/bone.png"));
+	    labell1.setLocation( 0, 0);
+	    labell1.setSize(32, 32);
+	    spriteB.add(labell1);
+	    this.setLayout(null);
+	    this.add(spriteB);	
 
 	}
 	
