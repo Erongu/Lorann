@@ -25,7 +25,7 @@ import model.Model;
 
 /**
  *
- * @author NWYART
+ * @author 
  */
 public class MenuSwing extends JMenuBar {
 

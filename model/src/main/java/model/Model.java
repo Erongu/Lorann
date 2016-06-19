@@ -22,6 +22,8 @@ public class Model extends Observable implements IModel {
 	/** The message. */
 	private String message;
 	private int IDmap;
+	
+	
 
 	public int getIDmap() {
 		return IDmap;

@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.MediaTracker;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
+import java.awt.image.ImageObserver;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -17,12 +18,15 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
+import model.Sprite;
+
 class ViewPanel extends JPanel implements Observer {
 
 	/** The view frame. */
 	private ViewFrame	viewFrame;
 	/** The Constant serialVersionUID. */
 	private static final long	serialVersionUID	= -998294702363713521L;
+	private static final ImageObserver ImageObserver = null;
 
 	/**
 	 * Instantiates a new view panel.
@@ -108,6 +112,7 @@ class ViewPanel extends JPanel implements Observer {
 		  // Image is load on first use.
 		  
 		  MediaTracker mt = new MediaTracker(this);
+		  
 		  mt.addImage(imgL, 1);
 		  mt.addImage(imgB, 2);
 		  mt.addImage(imgLG, 3);
@@ -124,10 +129,15 @@ class ViewPanel extends JPanel implements Observer {
 		     mt.waitForID(0);         // Image is in memory.
 		  } 
 		  
-		  catch(InterruptedException e) {}  //as println , with name and x,y 
-		  
-	/*	  while(1=0){
-			  this.getViewFrame().getModel().
+		  catch(InterruptedException e) {} 
+		 System.out.println(this.viewFrame.getModel().getIDmap());
+		 
+		 Sprite sprite = new Sprite( 40, 40, "BH", "c:/sprite/lorann_b.png", graphics );
+		 sprite.demarre();
+
+		 
+		 /* while(1=0){
+			  
 			  if(ID_Type = "B")
 				  BufferedImage bimgB = new BufferedImage( imgB.getWidth(viewFrame), imgB.getHeight(viewFrame), BufferedImage.TYPE_INT_RGB);
 			  graphics.drawImage(imgB, Axis_X, Axis_Y, viewFrame);
@@ -151,12 +161,13 @@ class ViewPanel extends JPanel implements Observer {
 			  graphics.drawImage(imgM3, Axis_X, Axis_Y, viewFrame);
 			  else if(ID_Type = "M4")
 				  BufferedImage bimgM4 = new BufferedImage( imgM4.getWidth(viewFrame), imgM4.getHeight(viewFrame), BufferedImage.TYPE_INT_RGB);
-			  graphics.drawImage(imgM4, Axis_X, Axis_Y, viewFrame);
-			  
-				  
+			  graphics.drawImage(imgM4, Axis_X, Axis_Y, viewFrame);  
 		  }*/
-		  BufferedImage bimgLG = new BufferedImage( imgLG.getWidth(viewFrame), imgLG.getHeight(viewFrame), BufferedImage.TYPE_INT_RGB);
-		  graphics.drawImage(imgLG, 0, 0, viewFrame);
+		 
+		 //ImageObserver IO = ImageObserver;
+		 
+		  BufferedImage bimgLG = new BufferedImage( 32, 32, BufferedImage.TYPE_INT_RGB);
+		  graphics.drawImage( imgB, 0, 0, viewFrame );
 		  
 		 }
 
