@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.ArrayList;
+
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
@@ -71,7 +73,7 @@ public class Controller implements IController {
 	 * @see contract.IController#orderPerform(contract.ControllerOrder)
 	 */
 	public void orderPerform(final ControllerOrder controllerOrder) {
-		
+		ArrayList<String> spritelist = null;
 		switch (controllerOrder) {
 			case Level1:
 				this.model.setIDmap(1);
