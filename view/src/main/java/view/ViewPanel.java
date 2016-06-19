@@ -51,7 +51,7 @@ class ViewPanel extends JPanel implements Observer {
 	}
 	/**
 	 * Sets the view frame.
-	 *
+	 *b 
 	 * @param viewFrame
 	 *          the new view frame
 	 */
@@ -121,6 +121,35 @@ class ViewPanel extends JPanel implements Observer {
 		  
 		  catch(InterruptedException e) {}  //as println , with name and x,y 
 		  
+	/*	  while(1=0){
+			  this.getViewFrame().getModel().
+			  if(ID_Type = "B")
+				  BufferedImage bimgB = new BufferedImage( imgB.getWidth(viewFrame), imgB.getHeight(viewFrame), BufferedImage.TYPE_INT_RGB);
+			  graphics.drawImage(imgB, Axis_X, Axis_Y, viewFrame);
+			  else if (ID_Type = "BH")
+				  BufferedImage bimgBH = new BufferedImage( imgBH.getWidth(viewFrame), imgBH.getHeight(viewFrame), BufferedImage.TYPE_INT_RGB);
+			  graphics.drawImage(imgBH, Axis_X, Axis_Y, viewFrame);
+			  else if(ID_Type = "BV")
+				  BufferedImage bimgP = new BufferedImage( imgP.getWidth(viewFrame), imgP.getHeight(viewFrame), BufferedImage.TYPE_INT_RGB);
+			  graphics.drawImage(imgP, Axis_X, Axis_Y, viewFrame);
+			  else if(ID_Type = "CB")
+				  BufferedImage bimgCB = new BufferedImage( imgCB.getWidth(viewFrame), imgCB.getHeight(viewFrame), BufferedImage.TYPE_INT_RGB);
+			  graphics.drawImage(imgCB, Axis_X, Axis_Y, viewFrame);
+			  else if(ID_Type = "M1")
+				  BufferedImage bimgM1 = new BufferedImage( imgM1.getWidth(viewFrame), imgM1.getHeight(viewFrame), BufferedImage.TYPE_INT_RGB);
+			  graphics.drawImage(imgM1, Axis_X, Axis_Y, viewFrame);
+			  else if(ID_Type = "M2")
+				  BufferedImage bimgM2 = new BufferedImage( imgM2.getWidth(viewFrame), imgM2.getHeight(viewFrame), BufferedImage.TYPE_INT_RGB);
+			  graphics.drawImage(imgM2, Axis_X, Axis_Y, viewFrame);
+			  else if(ID_Type = "M3")
+				  BufferedImage bimgM3 = new BufferedImage( imgM3.getWidth(viewFrame), imgM3.getHeight(viewFrame), BufferedImage.TYPE_INT_RGB);
+			  graphics.drawImage(imgM3, Axis_X, Axis_Y, viewFrame);
+			  else if(ID_Type = "M4")
+				  BufferedImage bimgM4 = new BufferedImage( imgM4.getWidth(viewFrame), imgM4.getHeight(viewFrame), BufferedImage.TYPE_INT_RGB);
+			  graphics.drawImage(imgM4, Axis_X, Axis_Y, viewFrame);
+			  
+				  
+		  }*/
 		  BufferedImage bimgLG = new BufferedImage( imgLG.getWidth(viewFrame), imgLG.getHeight(viewFrame), BufferedImage.TYPE_INT_RGB);
 		  graphics.drawImage(imgLG, 0, 0, viewFrame);
 		  
