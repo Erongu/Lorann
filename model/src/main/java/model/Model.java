@@ -76,8 +76,14 @@ public class Model extends Observable implements IModel {
 		}
 	}
 
-	public void GetSpriteList(){
-		
+	public ArrayList<String> GetSpriteList(){
+		ArrayList<String> A = new ArrayList<String>();
+		A.add("BH");
+		A.add("B");
+		A.add("BH");
+		A.add("B");
+		A.add("B");
+		return A;
 	}
 	
 	
