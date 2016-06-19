@@ -86,27 +86,43 @@ class ViewPanel extends JPanel implements Observer {
 		  // NW_EXEAMPLE - Display a sprite.
 		  
 		  Toolkit tk = Toolkit.getDefaultToolkit();
-		  java.awt.Image img = tk.getImage("c:/sprite/bone.png");        //Gif, Jpeg ou png.
+		        //Gif, Jpeg ou png.
+		  
 		  java.awt.Image imgL = tk.getImage("c:/sprite/lorann_b.png");
 		  java.awt.Image imgLG = tk.getImage("c:/sprite/lorann_GIF.gif");
+		  java.awt.Image imgB = tk.getImage("c:/sprite/bone.png");
+		  java.awt.Image imgBH = tk.getImage("c:/sprite/horizontal_bone.png") ;
+		  java.awt.Image imgBV = tk.getImage("c:/sprite/vertical_bone.png");
+		  java.awt.Image imgP = tk.getImage("c:/sprite/purse.png");
+		  java.awt.Image imgCB = tk.getImage("c:/sprite/crystal_ball.png");
+		  java.awt.Image imgM1 = tk.getImage("c:/sprite/monster_1");
+		  java.awt.Image imgM2 = tk.getImage("c:/sprite/monster_2");
+		  java.awt.Image imgM3 = tk.getImage("c:/sprite/monster_3");
+		  java.awt.Image imgM4 = tk.getImage("c:/sprite/mosnter_4");
+		  
 		  // Image is load on first use.
 		  
 		  MediaTracker mt = new MediaTracker(this);
-		  mt.addImage(imgL, 5);
-		  mt.addImage(img, 5);
-		  mt.addImage(imgLG, 5);
+		  mt.addImage(imgL, 1);
+		  mt.addImage(imgB, 2);
+		  mt.addImage(imgLG, 3);
+		  mt.addImage(imgBH, 4);
+		  mt.addImage(imgBV, 5);
+		  mt.addImage(imgP, 6);
+		  mt.addImage(imgCB, 7);
+		  mt.addImage(imgM1, 8);
+		  mt.addImage(imgM2, 9);
+		  mt.addImage(imgM3, 10);
+		  mt.addImage(imgM4, 11);
+		  
 		  try {
 		     mt.waitForID(0);         // Image is in memory.
 		  } 
 		  
-		  catch(InterruptedException e) {}
+		  catch(InterruptedException e) {}  //as println , with name and x,y 
 		  
-		  BufferedImage bimg = new BufferedImage( img.getWidth(viewFrame), img.getHeight(viewFrame), BufferedImage.TYPE_INT_RGB);
-		  graphics.drawImage(img, 0, 0, viewFrame);
-		  BufferedImage bimgL = new BufferedImage( imgL.getWidth(viewFrame), imgL.getHeight(viewFrame), BufferedImage.TYPE_INT_RGB);
-		  graphics.drawImage(imgL, 32, 0, viewFrame);
 		  BufferedImage bimgLG = new BufferedImage( imgLG.getWidth(viewFrame), imgLG.getHeight(viewFrame), BufferedImage.TYPE_INT_RGB);
-		  graphics.drawImage(imgLG, 32*5, 0, viewFrame);
+		  graphics.drawImage(imgLG, 0, 0, viewFrame);
 		  
 		 }
 	}

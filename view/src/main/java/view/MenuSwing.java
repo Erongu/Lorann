@@ -36,12 +36,12 @@ public class MenuSwing extends JMenuBar {
         
     //  Load level.
     System.out.println( "MenuSwing.actionPerformed( '" + event.getActionCommand() + "' )");
-    
+
     Connection cnx = jpublankprojectDB();
     
     Statement stmt = null;
     String query = "select ID_Object, ID_Map, ID_Type, " +
-                   "AXIS_X, AXIS_Y " +
+                   "AXIS_X, AXIS_Y " +     // SQL request
                    "from map";
     try {
         stmt = cnx.createStatement();
