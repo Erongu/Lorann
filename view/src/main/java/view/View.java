@@ -23,8 +23,7 @@ public class View implements IView, Runnable {
 	/** The frame. */
 	private final ViewFrame viewFrame;
 
-	/**
-	 * Instantiates a new view.
+	 /* Instantiates a new view.
 	 *
 	 * @param model
 	 *          the model
@@ -35,30 +34,9 @@ public class View implements IView, Runnable {
 				
 		this.viewFrame = new ViewFrame(model);
 	    
-		SwingUtilities.invokeLater(this);
-
-		Connection cnx = jpublankprojectDB();
-		
-	    Statement stmt = null;
-	    String query = "select ID_Object, ID_Map, ID_Type, " +
-	                   "AXIS_X, AXIS_Y " +
-	                   "from map";
-	    try {
-	        stmt = cnx.createStatement();
-	        ResultSet rs = stmt.executeQuery(query);
-
-
-	        while (rs.next()) {
-	            String ID_Type = rs.getString("ID_Type");
-	            
-	            //System.out.println( typeId) 
-	        }
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}		
+		SwingUtilities.invokeLater(this);	
 	}
+	
 	/**
 	 * Key code to controller order.
 	 *
@@ -66,22 +44,21 @@ public class View implements IView, Runnable {
 	 *          the key code
 	 * @return the controller order
 	 */
+	
 	protected static ControllerOrder keyCodeToControllerOrder(final int keyCode) {
 		switch (keyCode) {
-			case KeyEvent.VK_KP_DOWN:
-				
-				
-				return ControllerOrder.English ;
-			case KeyEvent.VK_KP_UP:
-				return ControllerOrder.Francais;
-			case KeyEvent.VK_KP_LEFT:
-				return ControllerOrder.Deutsch;
-			case KeyEvent.VK_KP_RIGHT:
-				return ControllerOrder.Indonesia;
-			case KeyEvent.VK_SPACE : 
-				return ControllerOrder.English;
+			case KeyEvent.VK_1:
+				return ControllerOrder.Level1;
+			case KeyEvent.VK_2:
+				return ControllerOrder.Level2;
+			case KeyEvent.VK_3:
+				return ControllerOrder.Level3;
+			case KeyEvent.VK_4:
+				return ControllerOrder.Level4;
+			case KeyEvent.VK_5:
+				return ControllerOrder.Level5;
 			default:
-				return ControllerOrder.English;
+				return ControllerOrder.Level0;
 		}
 	}
 	/*
@@ -109,43 +86,7 @@ public class View implements IView, Runnable {
 	public void setController(final IController controller) {
 		this.viewFrame.setController(controller);
 	}
-	public  Connection jpublankprojectDB(){
-		
-		try{
-			Class.forName( "com.mysql.jdbc.Driver" );
-			
-			System.out.println("View.jpublankprojectDB() : Driver created.");
-			
-			String url = "jdbc:mysql://localhost:3306/jpublankproject";
-			String user = "root";
-			String pass = "";
-			
-			Connection jpublankprojectConnection = DriverManager.getConnection( url, user, pass );
-			
-			System.out.println("View.jpublankprojectDB() : Connection created.");
-			
-			return jpublankprojectConnection;
-			
-		}catch( Exception E){
-			E.printStackTrace();
-			//return null;
-		}
-		return null;
-	}
-	/*blic void move(){
-		//onClipEvent(KeyCode){ 
-			/* if(Key.isDown(Key.LEFT)){ 
-		 	_x -= # 
-			 } 
-			 if(Key.isDown(Key.RIGHT)){ 
-			  _x += # 
-			 } 
-			if(Key.isDown(Key.DOWN)){  
-			 _y += # 
-			} 
-			if(Key.isDown(Key.UP)){ 
-			 _y -= #  
-			} 
-			} }*/
+	
+
 
 }

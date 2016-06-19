@@ -1,5 +1,4 @@
 package view;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Frame;
@@ -49,6 +48,7 @@ class ViewPanel extends JPanel implements Observer {
 	private ViewFrame getViewFrame() {
 		return this.viewFrame;
 	}
+
 	/**
 	 * Sets the view frame.
 	 *b 
@@ -58,8 +58,11 @@ class ViewPanel extends JPanel implements Observer {
 	private void setViewFrame(final ViewFrame viewFrame) {
 		this.viewFrame = viewFrame;
 	}
-	
-	 /* @see java.util.Observer#update(java.util.Observable, java.lang.Object)
+
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
 	 */
 	public void update(final Observable arg0, final Object arg1) {
 		
@@ -67,6 +70,7 @@ class ViewPanel extends JPanel implements Observer {
 		
 		this.repaint();
 	}
+
 	/*
 	 * (non-Javadoc)
 	 *
@@ -76,6 +80,7 @@ class ViewPanel extends JPanel implements Observer {
 	protected void paintComponent(final Graphics graphics) {
 		
 		System.out.println("ViewPanel.paintComponent( ) : " + graphics.toString());
+
 		
 		//graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
 		//graphics.drawString( "Message" /*this.getViewFrame().getModel().getMessage()*/, 10, 20) ;
@@ -154,6 +159,5 @@ class ViewPanel extends JPanel implements Observer {
 		  graphics.drawImage(imgLG, 0, 0, viewFrame);
 		  
 		 }
-	}
-	
 
+	}

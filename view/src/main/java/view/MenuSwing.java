@@ -36,19 +36,19 @@ public class MenuSwing extends JMenuBar {
         
     //  Load level.
     System.out.println( "MenuSwing.actionPerformed( '" + event.getActionCommand() + "' )");
-
+    
     Connection cnx = jpublankprojectDB();
     
     Statement stmt = null;
     String query = "select ID_Object, ID_Map, ID_Type, " +
-                   "AXIS_X, AXIS_Y " +     // SQL request
+                   "AXIS_X, AXIS_Y " +
                    "from map";
     try {
         stmt = cnx.createStatement();
         ResultSet rs = stmt.executeQuery(query);
         
         while (rs.next()) {
-            String ID_Type = rs.getString("ID_Type");
+            String typeId = rs.getString("ID_Type");
             
 
         }
@@ -86,26 +86,26 @@ public class MenuSwing extends JMenuBar {
 };
 
 // Create file
-		JMenu fichierMenu = new JMenu("Levels");
+JMenu fichierMenu = new JMenu("Levels");
 
-		JMenuItem item = new JMenuItem("Level 1", '1');
-		item.addActionListener(afficherMenuListener);
-		fichierMenu.add(item);
-		item = new JMenuItem("Level 2", '2');
-		item.addActionListener(afficherMenuListener);
-		fichierMenu.add(item);
-		item = new JMenuItem("Level 3", '3');
-		item.addActionListener(afficherMenuListener);
-		fichierMenu.add(item);
-		item = new JMenuItem("Level 4", '4');
-		item.addActionListener(afficherMenuListener);
-		fichierMenu.add(item);
-		item = new JMenuItem("Level 5", '5');
-		item.addActionListener(afficherMenuListener);
-		fichierMenu.add(item);
+JMenuItem item = new JMenuItem("Level 1", '1');
+item.addActionListener(afficherMenuListener);
+fichierMenu.add(item);
+item = new JMenuItem("Level 2", '2');
+item.addActionListener(afficherMenuListener);
+fichierMenu.add(item);
+item = new JMenuItem("Level 3", '3');
+item.addActionListener(afficherMenuListener);
+fichierMenu.add(item);
+item = new JMenuItem("Level 4", '4');
+item.addActionListener(afficherMenuListener);
+fichierMenu.add(item);
+item = new JMenuItem("Level 5", '5');
+item.addActionListener(afficherMenuListener);
+fichierMenu.add(item);
 
 
-		add(fichierMenu);
+add(fichierMenu);
 
-    }
+}
 }

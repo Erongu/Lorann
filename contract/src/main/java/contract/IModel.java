@@ -1,5 +1,6 @@
 package contract;
 
+import java.util.ArrayList;
 import java.util.Observable;
 
 /**
@@ -23,6 +24,12 @@ public interface IModel {
 	 *          the key
 	 */
 	void loadMessage(String key);
+	
+	public ArrayList<String> loadMap ();
+	
+	public void setIDmap(int iDmap);
+	
+	public int getIDmap();
 
 	/**
 	 * Gets the observable.
