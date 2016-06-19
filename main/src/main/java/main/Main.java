@@ -16,7 +16,6 @@ import javax.swing.JPanel;
 /**
  * The Class Main.
  *
- * @author Jean-Aymeric Diet
  */
 public abstract class Main {
 

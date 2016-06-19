@@ -98,17 +98,17 @@ class ViewPanel extends JPanel implements Observer {
 		  try {
 		     mt.waitForID(0);         // Image is in memory.
 		  } 
+		  
 		  catch(InterruptedException e) {}
+		  
 		  BufferedImage bimg = new BufferedImage( img.getWidth(viewFrame), img.getHeight(viewFrame), BufferedImage.TYPE_INT_RGB);
 		  graphics.drawImage(img, 0, 0, viewFrame);
 		  BufferedImage bimgL = new BufferedImage( imgL.getWidth(viewFrame), imgL.getHeight(viewFrame), BufferedImage.TYPE_INT_RGB);
 		  graphics.drawImage(imgL, 32, 0, viewFrame);
 		  BufferedImage bimgLG = new BufferedImage( imgLG.getWidth(viewFrame), imgLG.getHeight(viewFrame), BufferedImage.TYPE_INT_RGB);
 		  graphics.drawImage(imgLG, 32*5, 0, viewFrame);
-		 
-		  	
+		  
 		 }
-
 	}
 	
 

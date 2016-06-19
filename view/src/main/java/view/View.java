@@ -49,7 +49,7 @@ public class View implements IView, Runnable {
 
 
 	        while (rs.next()) {
-	            String typeId = rs.getString("ID_Type");
+	            String ID_Type = rs.getString("ID_Type");
 	            
 	            //System.out.println( typeId) 
 	        }

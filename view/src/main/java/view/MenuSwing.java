@@ -107,5 +107,5 @@ public class MenuSwing extends JMenuBar {
 
 		add(fichierMenu);
 
-}
+    }
 }

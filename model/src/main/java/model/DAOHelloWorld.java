@@ -8,7 +8,6 @@ import java.sql.SQLException;
 /**
  * The Class DAOHelloWorld.
  *
- * @author Jean-Aymeric Diet
  */
 class DAOHelloWorld extends DAOEntity<HelloWorld> {
 
