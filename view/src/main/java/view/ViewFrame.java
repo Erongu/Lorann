@@ -19,7 +19,6 @@ import javax.swing.JOptionPane;
 import contract.IController;
 import contract.IModel;
 
-
 class ViewFrame extends JFrame implements KeyListener {
 
 	/** The model. */
@@ -29,7 +28,6 @@ class ViewFrame extends JFrame implements KeyListener {
 	/** The Constant serialVersionUID. */
 	private static final long	serialVersionUID	= -697358409737458175L;
 
-	
 	/**
 	 * Instantiates a new view frame.
 	 *
@@ -194,7 +192,9 @@ class ViewFrame extends JFrame implements KeyListener {
 	 * @see java.awt.event.KeyListener#keyPressed(java.awt.event.KeyEvent)
 	 */
 	public void keyPressed(final KeyEvent e) {
+		
 		this.getController().orderPerform(View.keyCodeToControllerOrder(e.getKeyCode()));
+		
 	}
 
 	/*

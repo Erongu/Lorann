@@ -16,7 +16,6 @@ import javax.swing.JPanel;
 /**
  * The Class Main.
  *
- * @author Jean-Aymeric Diet
  */
 public abstract class Main {
 
@@ -57,7 +56,7 @@ public abstract class Main {
 			
 		}catch( Exception E){
 			E.printStackTrace();
-			//return nul;
+			//return null;
 		}
 		return null;
 	}	

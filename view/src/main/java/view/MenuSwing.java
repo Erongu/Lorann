@@ -30,7 +30,7 @@ import model.Model;
 public class MenuSwing extends JMenuBar {
 
     public MenuSwing() {
-    // Listener générique qui affiche l'action du menu utilisï¿½
+    // Listener general : the action of menu user
     ActionListener afficherMenuListener = new ActionListener() {
     public void actionPerformed(ActionEvent event) {
         

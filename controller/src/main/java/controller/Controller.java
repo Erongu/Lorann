@@ -71,7 +71,7 @@ public class Controller implements IController {
 	 * @see contract.IController#orderPerform(contract.ControllerOrder)
 	 */
 	public void orderPerform(final ControllerOrder controllerOrder) {
-		String[] spritelist = null;
+		
 		switch (controllerOrder) {
 			case Level1:
 				this.model.setIDmap(1);
@@ -98,10 +98,7 @@ public class Controller implements IController {
 				spritelist = this.model.loadMap();
 				break;
 		}
-		
-		System.out.println(spritelist.toString());
-		//view.CreateSprite(0, 0);
-		
+		System.out.println(spritelist.toString());	
 	}
 
 }

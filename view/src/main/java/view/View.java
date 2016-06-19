@@ -18,7 +18,6 @@ import contract.IModel;
 import contract.IView;
 import javafx.scene.paint.Color;
 
-
 public class View implements IView, Runnable {
 
 	/** The frame. */
