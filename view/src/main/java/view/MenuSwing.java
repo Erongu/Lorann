@@ -93,7 +93,6 @@ item.addActionListener(afficherMenuListener);
 fichierMenu.add(item);
 item = new JMenuItem("Level 2", '2');
 item.addActionListener(afficherMenuListener);
-
 fichierMenu.add(item);
 item = new JMenuItem("Level 3", '3');
 item.addActionListener(afficherMenuListener);

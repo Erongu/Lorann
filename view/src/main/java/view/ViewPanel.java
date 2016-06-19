@@ -35,17 +35,6 @@ class ViewPanel extends JPanel implements Observer {
 		
 		setBorder( BorderFactory.createLineBorder(Color.blue,2) );
 		
-		//	MW_HS :
-		setLayout(null);
-		viewFrame.setLayout(null);
-	    JPanel spriteB = new JPanel();
-	    JLabel labell1 = new JLabel();
-	    labell1.setIcon(new ImageIcon("C:/sprite/bone.png"));
-	    labell1.setLocation( 0, 0);
-	    labell1.setSize(32, 32);
-	    spriteB.add(labell1);
-	    viewFrame.add( spriteB );	
-	    
 		this.setViewFrame(viewFrame);
 		viewFrame.getModel().getObservable().addObserver(this);
 	}
@@ -90,21 +79,7 @@ class ViewPanel extends JPanel implements Observer {
 	protected void paintComponent(final Graphics graphics) {
 		
 		System.out.println("ViewPanel.paintComponent( ) : " + graphics.toString());
-		
-		//graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
-		graphics.drawString( "Message" /*this.getViewFrame().getModel().getMessage()*/, 10, 20) ;
-		
-		setLayout(null);
-		
-		//System.out.println( "CreateSprite()" );
-	    JPanel spriteB = new JPanel();
-	    JLabel labell1 = new JLabel();
-	    labell1.setIcon(new ImageIcon("C:/sprite/bone.png"));
-	    labell1.setLocation( 0, 0);
-	    labell1.setSize(32, 32);
-	    spriteB.add(labell1);
-	    this.setLayout(null);
-	    this.add(spriteB);	
+
 
 	}
 	

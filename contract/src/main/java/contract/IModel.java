@@ -23,6 +23,12 @@ public interface IModel {
 	 *          the key
 	 */
 	void loadMessage(String key);
+	
+	public String[] loadMap ();
+	
+	public void setIDmap(int iDmap);
+	
+	public int getIDmap();
 
 	/**
 	 * Gets the observable.

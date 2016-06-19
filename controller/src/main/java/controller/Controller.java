@@ -42,7 +42,6 @@ public class Controller implements IController {
 		
 		System.out.println("Controller.control()" );
 		
-		view.CreateSprite(0, 0);
 	
 	}
 
@@ -72,25 +71,35 @@ public class Controller implements IController {
 	 * @see contract.IController#orderPerform(contract.ControllerOrder)
 	 */
 	public void orderPerform(final ControllerOrder controllerOrder) {
+		String[] spritelist = null;
 		switch (controllerOrder) {
-			case English:
-				this.model.loadMessage("GB");
+			case Level1:
+				this.model.setIDmap(1);
+				spritelist = this.model.loadMap();
 				break;
-			case Francais:
-				this.model.loadMessage("FR");
+			case Level2:
+				this.model.setIDmap(2);
+				spritelist = this.model.loadMap();
 				break;
-			case Deutsch:
-				this.model.loadMessage("DE");
+			case Level3:
+				this.model.setIDmap(3);
+				spritelist = this.model.loadMap();
 				break;
-			case Indonesia:
-				this.model.loadMessage("ID");
+			case Level4:
+				this.model.setIDmap(4);
+				spritelist = this.model.loadMap();
 				break;
-
+			case Level5:
+				this.model.setIDmap(5);
+				spritelist = this.model.loadMap();
+				break;
 			default:
+				this.model.setIDmap(0);
+				spritelist = this.model.loadMap();
 				break;
 		}
 		
-		
+		System.out.println(spritelist.toString());
 		//view.CreateSprite(0, 0);
 		
 	}
