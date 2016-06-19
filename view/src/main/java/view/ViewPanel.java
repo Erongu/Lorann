@@ -7,6 +7,7 @@ import java.awt.MediaTracker;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -130,45 +131,63 @@ class ViewPanel extends JPanel implements Observer {
 		  } 
 		  
 		  catch(InterruptedException e) {} 
-		 System.out.println(this.viewFrame.getModel().getIDmap());
+		  
+		 System.out.println( "Id_Map = " + this.viewFrame.getModel().getIDmap());
 		 
-		 Sprite sprite = new Sprite( 40, 40, "BH", "c:/sprite/lorann_b.png", graphics );
-		 sprite.demarre();
-
+		// Sprite sprite = new Sprite( 40, 40, "BH", "c:/sprite/lorann_b.png", graphics );
+		// sprite.demarre();
 		 
-		 /* while(1=0){
+		 ArrayList<String> spriteList = this.viewFrame.getModel().GetSpriteList();
+		 
+		 if (spriteList != null){
+		 
+		 for (int i = 0; i < spriteList.size(); i++) {
 			  
-			  if(ID_Type = "B")
+			 System.out.println(spriteList.get(i));
+			  if(spriteList.get(i).equals( "B")){
 				  BufferedImage bimgB = new BufferedImage( imgB.getWidth(viewFrame), imgB.getHeight(viewFrame), BufferedImage.TYPE_INT_RGB);
-			  graphics.drawImage(imgB, Axis_X, Axis_Y, viewFrame);
-			  else if (ID_Type = "BH")
+			  graphics.drawImage(imgB, i*32, i*32, viewFrame);
+			  }
+			  else if (spriteList.get(i).equals("BH")){
 				  BufferedImage bimgBH = new BufferedImage( imgBH.getWidth(viewFrame), imgBH.getHeight(viewFrame), BufferedImage.TYPE_INT_RGB);
-			  graphics.drawImage(imgBH, Axis_X, Axis_Y, viewFrame);
-			  else if(ID_Type = "BV")
-				  BufferedImage bimgP = new BufferedImage( imgP.getWidth(viewFrame), imgP.getHeight(viewFrame), BufferedImage.TYPE_INT_RGB);
-			  graphics.drawImage(imgP, Axis_X, Axis_Y, viewFrame);
-			  else if(ID_Type = "CB")
+			  graphics.drawImage(imgBH, i*32, i*32, viewFrame);
+			  }
+			  else if(spriteList.get(i).equals("BV"))
+			  {
+				  BufferedImage bimgP = new BufferedImage( imgBV.getWidth(viewFrame), imgBV.getHeight(viewFrame), BufferedImage.TYPE_INT_RGB);
+			  graphics.drawImage(imgBV, i*32, i*32, viewFrame);
+			  }
+			  else if(spriteList.get(i).equals("CB"))
+			  {
 				  BufferedImage bimgCB = new BufferedImage( imgCB.getWidth(viewFrame), imgCB.getHeight(viewFrame), BufferedImage.TYPE_INT_RGB);
-			  graphics.drawImage(imgCB, Axis_X, Axis_Y, viewFrame);
-			  else if(ID_Type = "M1")
+			  graphics.drawImage(imgCB, i*32, i*32, viewFrame);
+			  }
+			  else if(spriteList.get(i).equals("M1"))
+			  {
 				  BufferedImage bimgM1 = new BufferedImage( imgM1.getWidth(viewFrame), imgM1.getHeight(viewFrame), BufferedImage.TYPE_INT_RGB);
-			  graphics.drawImage(imgM1, Axis_X, Axis_Y, viewFrame);
-			  else if(ID_Type = "M2")
+			  graphics.drawImage(imgM1, i*32, i*32, viewFrame);
+			  }
+			  else if(spriteList.get(i).equals("M2"))
+			  {
 				  BufferedImage bimgM2 = new BufferedImage( imgM2.getWidth(viewFrame), imgM2.getHeight(viewFrame), BufferedImage.TYPE_INT_RGB);
-			  graphics.drawImage(imgM2, Axis_X, Axis_Y, viewFrame);
-			  else if(ID_Type = "M3")
+			  graphics.drawImage(imgM2, i*32, i*32, viewFrame);
+			  }
+			  else if(spriteList.get(i).equals("M3"))
+			  {
 				  BufferedImage bimgM3 = new BufferedImage( imgM3.getWidth(viewFrame), imgM3.getHeight(viewFrame), BufferedImage.TYPE_INT_RGB);
-			  graphics.drawImage(imgM3, Axis_X, Axis_Y, viewFrame);
-			  else if(ID_Type = "M4")
+			  graphics.drawImage(imgM3, i*32, i*32, viewFrame);
+			  }
+			  else if(spriteList.get(i).equals("M4"))
+			  {
 				  BufferedImage bimgM4 = new BufferedImage( imgM4.getWidth(viewFrame), imgM4.getHeight(viewFrame), BufferedImage.TYPE_INT_RGB);
-			  graphics.drawImage(imgM4, Axis_X, Axis_Y, viewFrame);  
-		  }*/
+			  graphics.drawImage(imgM4, i*32,i*32 , viewFrame);  
+			  }
+		  }
 		 
 		 //ImageObserver IO = ImageObserver;
 		 
-		  BufferedImage bimgLG = new BufferedImage( 32, 32, BufferedImage.TYPE_INT_RGB);
-		  graphics.drawImage( imgB, 0, 0, viewFrame );
-		  
-		 }
-
+		  //BufferedImage bimgLG = new BufferedImage( 32, 32, BufferedImage.TYPE_INT_RGB);
+		  //graphics.drawImage( imgB, 0, 0, viewFrame);
 	}
+}
+}

@@ -85,14 +85,14 @@ public class Model extends Observable implements IModel {
 		    Statement stmt = null;
 		    String query = "select ID_Object, ID_Map, ID_Type, " +
 		                   "AXIS_X, AXIS_Y " +
-		                   "from map WHERE ID_Map =" + Integer.toString(IDmap);
+		                   "from map WHERE ID_Map =" + Integer.toString(1);
 	        stmt = cnx.createStatement();
 	        ResultSet rs = stmt.executeQuery(query);
 
-	        int i = 0;
-
 	        while (rs.next()) {
-	            A.add(rs.getString("ID_Type"));
+	        	
+	            A.add(rs.getString("ID_Type").trim());
+
 	        }
 		}
 	        catch (final SQLException e) {
@@ -106,11 +106,11 @@ public class Model extends Observable implements IModel {
 		return A;
 		}
 		
-	}
+
 	
 	
 	public void loadMap () { 
-		int ID_Map = this.getIDmap();
+		int ID_Map = this.getIDmap();/*
 		spritelist = new ArrayList<String>();
 		try {
 			Connection cnx = jpublankprojectDB();
@@ -133,7 +133,7 @@ public class Model extends Observable implements IModel {
 			;
 		} catch (final SQLException e) {
 			e.printStackTrace();
-		}
+		}*/
 		return;
 	}
 	
