@@ -74,7 +74,7 @@ public class Model extends Observable implements IModel {
 		}
 	}
 
-	public String[] loadMap () { 
+	public ArrayList<String> loadMap () { 
 		int ID_Map = this.getIDmap();
         ArrayList<String> spritelist = new ArrayList<String>();
 		try {
