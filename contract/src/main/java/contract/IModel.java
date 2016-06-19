@@ -27,6 +27,8 @@ public interface IModel {
 	
 	public void loadMap ();
 	
+	public void GetSpriteList();
+	
 	public void setIDmap(int iDmap);
 	
 	public int getIDmap();

@@ -22,12 +22,10 @@ public class Model extends Observable implements IModel {
 	/** The message. */
 	private String message;
 	
-	public ArrayList<String> spritelist;
+	public ArrayList<String> spritelist = new ArrayList<String>();
 	
 	private int IDmap;
 	
-	
-
 	public int getIDmap() {
 		return IDmap;
 	}
@@ -78,6 +76,11 @@ public class Model extends Observable implements IModel {
 		}
 	}
 
+	public void GetSpriteList(){
+		
+	}
+	
+	
 	public void loadMap () { 
 		int ID_Map = this.getIDmap();
 		spritelist = new ArrayList<String>();
