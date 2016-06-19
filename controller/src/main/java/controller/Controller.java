@@ -42,7 +42,7 @@ public class Controller implements IController {
 		
 		System.out.println("Controller.control()" );
 		
-		view.CreateSprite(0, 0);
+		//view.CreateSprite(0, 0);
 	
 	}
 
@@ -72,6 +72,7 @@ public class Controller implements IController {
 	 * @see contract.IController#orderPerform(contract.ControllerOrder)
 	 */
 	public void orderPerform(final ControllerOrder controllerOrder) {
+		
 		switch (controllerOrder) {
 			case English:
 				this.model.loadMessage("GB");
@@ -88,11 +89,6 @@ public class Controller implements IController {
 
 			default:
 				break;
-		}
-		
-		
-		//view.CreateSprite(0, 0);
-		
+		}			
 	}
-
 }

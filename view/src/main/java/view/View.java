@@ -51,10 +51,7 @@ public class View implements IView, Runnable {
 	        while (rs.next()) {
 	            String typeId = rs.getString("ID_Type");
 	            
-	            //System.out.println( typeId );
-	            
-
-	            
+	            //System.out.println( typeId) 
 	        }
 
 		} catch (SQLException e) {
@@ -71,14 +68,18 @@ public class View implements IView, Runnable {
 	 */
 	protected static ControllerOrder keyCodeToControllerOrder(final int keyCode) {
 		switch (keyCode) {
-			case KeyEvent.VK_G:
-				return ControllerOrder.English;
-			case KeyEvent.VK_F:
+			case KeyEvent.VK_KP_DOWN:
+				
+				
+				return ControllerOrder.English ;
+			case KeyEvent.VK_KP_UP:
 				return ControllerOrder.Francais;
-			case KeyEvent.VK_D:
+			case KeyEvent.VK_KP_LEFT:
 				return ControllerOrder.Deutsch;
-			case KeyEvent.VK_I:
+			case KeyEvent.VK_KP_RIGHT:
 				return ControllerOrder.Indonesia;
+			case KeyEvent.VK_SPACE : 
+				return ControllerOrder.English;
 			default:
 				return ControllerOrder.English;
 		}
@@ -108,22 +109,6 @@ public class View implements IView, Runnable {
 	public void setController(final IController controller) {
 		this.viewFrame.setController(controller);
 	}
-	
-	public void CreateSprite( int x, int y){
-		
-		System.out.println( "View.CreateSprite( " + Integer.toString(x) + ", " + Integer.toString(y) + " )" );
-		
-	    this.viewFrame.setLayout(null);
-
-	    JPanel spriteB = new JPanel();
-	    JLabel labell1 = new JLabel();
-	    labell1.setIcon(new ImageIcon("C:/sprite/bone.png"));
-	    labell1.setLocation( x, y);
-	    labell1.setSize(32, 32);
-	    spriteB.add(labell1);
-	    this.viewFrame.add( spriteB );
-	}
-
 	public  Connection jpublankprojectDB(){
 		
 		try{
@@ -147,4 +132,20 @@ public class View implements IView, Runnable {
 		}
 		return null;
 	}
+	/*blic void move(){
+		//onClipEvent(KeyCode){ 
+			/* if(Key.isDown(Key.LEFT)){ 
+		 	_x -= # 
+			 } 
+			 if(Key.isDown(Key.RIGHT)){ 
+			  _x += # 
+			 } 
+			if(Key.isDown(Key.DOWN)){  
+			 _y += # 
+			} 
+			if(Key.isDown(Key.UP)){ 
+			 _y -= #  
+			} 
+			} }*/
+
 }

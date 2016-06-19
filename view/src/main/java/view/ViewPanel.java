@@ -4,7 +4,9 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.Graphics;
+import java.awt.MediaTracker;
 import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -35,17 +37,6 @@ class ViewPanel extends JPanel implements Observer {
 		
 		setBorder( BorderFactory.createLineBorder(Color.blue,2) );
 		
-		//	MW_HS :
-		setLayout(null);
-		viewFrame.setLayout(null);
-	    JPanel spriteB = new JPanel();
-	    JLabel labell1 = new JLabel();
-	    labell1.setIcon(new ImageIcon("C:/sprite/bone.png"));
-	    labell1.setLocation( 0, 0);
-	    labell1.setSize(32, 32);
-	    spriteB.add(labell1);
-	    viewFrame.add( spriteB );	
-	    
 		this.setViewFrame(viewFrame);
 		viewFrame.getModel().getObservable().addObserver(this);
 	}
@@ -58,7 +49,6 @@ class ViewPanel extends JPanel implements Observer {
 	private ViewFrame getViewFrame() {
 		return this.viewFrame;
 	}
-
 	/**
 	 * Sets the view frame.
 	 *
@@ -68,11 +58,8 @@ class ViewPanel extends JPanel implements Observer {
 	private void setViewFrame(final ViewFrame viewFrame) {
 		this.viewFrame = viewFrame;
 	}
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
+	
+	 /* @see java.util.Observer#update(java.util.Observable, java.lang.Object)
 	 */
 	public void update(final Observable arg0, final Object arg1) {
 		
@@ -80,7 +67,6 @@ class ViewPanel extends JPanel implements Observer {
 		
 		this.repaint();
 	}
-
 	/*
 	 * (non-Javadoc)
 	 *
@@ -92,20 +78,37 @@ class ViewPanel extends JPanel implements Observer {
 		System.out.println("ViewPanel.paintComponent( ) : " + graphics.toString());
 		
 		//graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
-		graphics.drawString( "Message" /*this.getViewFrame().getModel().getMessage()*/, 10, 20) ;
+		//graphics.drawString( "Message" /*this.getViewFrame().getModel().getMessage()*/, 10, 20) ;
 		
-		setLayout(null);
-		
-		//System.out.println( "CreateSprite()" );
-	    JPanel spriteB = new JPanel();
-	    JLabel labell1 = new JLabel();
-	    labell1.setIcon(new ImageIcon("C:/sprite/bone.png"));
-	    labell1.setLocation( 0, 0);
-	    labell1.setSize(32, 32);
-	    spriteB.add(labell1);
-	    this.setLayout(null);
-	    this.add(spriteB);	
+		  
+		  System.out.println( "ViewPanel.paintComponent( ) : DrawImage()" );
+		  
+		  // NW_EXEAMPLE - Display a sprite.
+		  
+		  Toolkit tk = Toolkit.getDefaultToolkit();
+		  java.awt.Image img = tk.getImage("c:/sprite/bone.png");        //Gif, Jpeg ou png.
+		  java.awt.Image imgL = tk.getImage("c:/sprite/lorann_b.png");
+		  java.awt.Image imgLG = tk.getImage("c:/sprite/lorann_GIF.gif");
+		  // Image is load on first use.
+		  
+		  MediaTracker mt = new MediaTracker(this);
+		  mt.addImage(imgL, 5);
+		  mt.addImage(img, 5);
+		  mt.addImage(imgLG, 5);
+		  try {
+		     mt.waitForID(0);         // Image is in memory.
+		  } 
+		  catch(InterruptedException e) {}
+		  BufferedImage bimg = new BufferedImage( img.getWidth(viewFrame), img.getHeight(viewFrame), BufferedImage.TYPE_INT_RGB);
+		  graphics.drawImage(img, 0, 0, viewFrame);
+		  BufferedImage bimgL = new BufferedImage( imgL.getWidth(viewFrame), imgL.getHeight(viewFrame), BufferedImage.TYPE_INT_RGB);
+		  graphics.drawImage(imgL, 32, 0, viewFrame);
+		  BufferedImage bimgLG = new BufferedImage( imgLG.getWidth(viewFrame), imgLG.getHeight(viewFrame), BufferedImage.TYPE_INT_RGB);
+		  graphics.drawImage(imgLG, 32*5, 0, viewFrame);
+		 
+		  	
+		 }
 
 	}
 	
-}
+

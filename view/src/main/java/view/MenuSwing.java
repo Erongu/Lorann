@@ -30,7 +30,7 @@ import model.Model;
 public class MenuSwing extends JMenuBar {
 
     public MenuSwing() {
-    // Listener générique qui affiche l'action du menu utilisï¿½
+    // Listener general : the action of menu user
     ActionListener afficherMenuListener = new ActionListener() {
     public void actionPerformed(ActionEvent event) {
         
@@ -48,7 +48,7 @@ public class MenuSwing extends JMenuBar {
         ResultSet rs = stmt.executeQuery(query);
         
         while (rs.next()) {
-            String typeId = rs.getString("ID_Type");
+            String ID_Type = rs.getString("ID_Type");
             
 
         }
@@ -86,27 +86,26 @@ public class MenuSwing extends JMenuBar {
 };
 
 // Create file
-JMenu fichierMenu = new JMenu("Levels");
+		JMenu fichierMenu = new JMenu("Levels");
 
-JMenuItem item = new JMenuItem("Level 1", '1');
-item.addActionListener(afficherMenuListener);
-fichierMenu.add(item);
-item = new JMenuItem("Level 2", '2');
-item.addActionListener(afficherMenuListener);
+		JMenuItem item = new JMenuItem("Level 1", '1');
+		item.addActionListener(afficherMenuListener);
+		fichierMenu.add(item);
+		item = new JMenuItem("Level 2", '2');
+		item.addActionListener(afficherMenuListener);
+		fichierMenu.add(item);
+		item = new JMenuItem("Level 3", '3');
+		item.addActionListener(afficherMenuListener);
+		fichierMenu.add(item);
+		item = new JMenuItem("Level 4", '4');
+		item.addActionListener(afficherMenuListener);
+		fichierMenu.add(item);
+		item = new JMenuItem("Level 5", '5');
+		item.addActionListener(afficherMenuListener);
+		fichierMenu.add(item);
 
-fichierMenu.add(item);
-item = new JMenuItem("Level 3", '3');
-item.addActionListener(afficherMenuListener);
-fichierMenu.add(item);
-item = new JMenuItem("Level 4", '4');
-item.addActionListener(afficherMenuListener);
-fichierMenu.add(item);
-item = new JMenuItem("Level 5", '5');
-item.addActionListener(afficherMenuListener);
-fichierMenu.add(item);
 
-
-add(fichierMenu);
+		add(fichierMenu);
 
 }
 }
