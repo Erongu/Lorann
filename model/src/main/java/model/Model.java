@@ -78,12 +78,34 @@ public class Model extends Observable implements IModel {
 
 	public ArrayList<String> GetSpriteList(){
 		ArrayList<String> A = new ArrayList<String>();
-		A.add("BH");
+		
+		try {
+			Connection cnx = jpublankprojectDB();
+			
+		    Statement stmt = null;
+		    String query = "select ID_Object, ID_Map, ID_Type, " +
+		                   "AXIS_X, AXIS_Y " +
+		                   "from map WHERE ID_Map =" + Integer.toString(IDmap);
+	        stmt = cnx.createStatement();
+	        ResultSet rs = stmt.executeQuery(query);
+
+	        int i = 0;
+
+	        while (rs.next()) {
+	            A.add(rs.getString("ID_Type"));
+	        }
+		}
+	        catch (final SQLException e) {
+				e.printStackTrace();
+			}
+		/*A.add("BH");
 		A.add("B");
 		A.add("BH");
 		A.add("B");
-		A.add("B");
+		A.add("B");*/
 		return A;
+		}
+		
 	}
 	
 	
