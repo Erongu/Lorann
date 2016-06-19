@@ -87,7 +87,7 @@ public class Model extends Observable implements IModel {
 		    Statement stmt = null;
 		    String query = "select ID_Object, ID_Map, ID_Type, " +
 		                   "AXIS_X, AXIS_Y " +
-		                   "from map =" + Integer.toString(ID_Map);
+		                   "from map WHERE ID_Map =" + Integer.toString(ID_Map);
 	        stmt = cnx.createStatement();
 	        ResultSet rs = stmt.executeQuery(query);
 

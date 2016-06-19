@@ -46,7 +46,9 @@ public class View implements IView, Runnable {
 	 */
 	
 	protected static ControllerOrder keyCodeToControllerOrder(final int keyCode) {
+		System.out.println("Clavier = "+ Integer.toString(keyCode));
 		switch (keyCode) {
+
 			case KeyEvent.VK_1:
 				return ControllerOrder.Level1;
 			case KeyEvent.VK_2:
@@ -59,7 +61,7 @@ public class View implements IView, Runnable {
 				return ControllerOrder.Level5;
 			default:
 				return ControllerOrder.Level0;
-		}
+		}		
 	}
 	/*
 	 * (non-Javadoc)
