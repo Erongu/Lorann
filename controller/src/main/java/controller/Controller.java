@@ -19,7 +19,10 @@ public class Controller implements IController {
 
 	/** The model. */
 	private IModel	model;
+	
+	/** Current Level */
 
+	private int LevelId;
 	/**
 	 * Instantiates a new controller.
 	 *
@@ -75,33 +78,38 @@ public class Controller implements IController {
 	public void orderPerform(final ControllerOrder controllerOrder) {
 		switch (controllerOrder) {
 			case Level1:
+				setLevelId(1);
 				this.model.setIDmap(1);
-				this.model.loadMap();
+				this.view.printMessage("1");
 				break;
 			case Level2:
+				setLevelId(2);
 				this.model.setIDmap(2);
-				this.model.loadMap();
+				this.view.printMessage("2");
 				break;
 			case Level3:
+				setLevelId(3);
 				this.model.setIDmap(3);
-				this.model.loadMap();
+				this.view.printMessage("3");
 				break;
 			case Level4:
+				setLevelId(4);
 				this.model.setIDmap(4);
-				this.model.loadMap();
+				this.view.printMessage("4");
 				break;
 			case Level5:
+				setLevelId(5);
 				this.model.setIDmap(5);
-				this.model.loadMap();
+				this.view.printMessage("5");
 				break;
-			case Level0:
-				this.model.setIDmap(0);
-				this.model.loadMap();
+			default:
 				break;
 			/*case Fireball:
 				this.model.run();
 				break;*/
 		}
 	}
-
+	public void setLevelId(int levelId){
+		LevelId = levelId;
+	}
 }

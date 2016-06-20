@@ -31,7 +31,14 @@ public class Model extends Observable implements IModel {
 	}
 
 	public void setIDmap(int iDmap) {
+		Boolean change = (IDmap != iDmap); 
 		IDmap = iDmap;
+		  
+		if (change == true){
+		spritelist = getSpriteList( );
+		this.setChanged();
+		this.notifyObservers();
+		}
 	}
 
 	/**
@@ -85,7 +92,7 @@ public class Model extends Observable implements IModel {
 		    Statement stmt = null;
 		    String query = "select ID_Object, ID_Map, ID_Type, " +
 		                   "AXIS_X, AXIS_Y " +
-		                   "from map WHERE ID_Map =" + Integer.toString(1);
+		                   "from map WHERE ID_Map =" + Integer.toString(IDmap);
 	        stmt = cnx.createStatement();
 	        ResultSet rs = stmt.executeQuery(query);
 
@@ -163,6 +170,45 @@ public class Model extends Observable implements IModel {
 		}
 		return null;
 	}
+	 private ArrayList<String> getSpriteList() {
+		  
+		  ArrayList<String> A = new ArrayList<String>();
+		  ArrayList<Integer> X = new ArrayList<Integer>();
+		  ArrayList<Integer> Y = new ArrayList<Integer>();
+
+		  try {
+		   Connection cnx = jpublankprojectDB();
+
+		   Statement stmt = null;
+		   String query = "select ID_Object, ID_Map, ID_Type, AXIS_X, AXIS_Y " + 
+		         "from map WHERE ID_Map = " + Integer.toString( IDmap );
+		   stmt = cnx.createStatement();
+		   ResultSet rs = stmt.executeQuery(query);
+
+		   while (rs.next()) {
+
+		    A.add(rs.getString("ID_Type").trim());
+		    X.add(rs.getInt("AXIS_X"));
+		    Y.add(rs.getInt("AXIS_Y"));
+
+		   }
+		  } catch (final SQLException e) {
+		   e.printStackTrace();
+		  }
+		  System.out.println("Model.getSpriteList() : IDmap = " + IDmap + ", Nb Sprites = " + A.size());
+		  
+		  spritelist = A;
+		  //spritelistX = X;
+		  //spritelistY = Y;
+		  
+		  // Indicate that the object has changed to all Observers.
+		  //this.setChanged();
+		  //this.notifyObservers();
+		  
+		  //System.out.println( "Model.GetSpriteList() : Nb d'observateurs = " + this.countObservers() );
+		  
+		  return A;
+		 }
 }
 
 

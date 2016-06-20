@@ -62,7 +62,7 @@ public class View implements IView, Runnable {
 			case KeyEvent.VK_SPACE:
 				return ControllerOrder.Fireball;
 			default:
-				return ControllerOrder.Level0;
+				return ControllerOrder.Default;
 		}		
 	}
 	/*
@@ -71,7 +71,7 @@ public class View implements IView, Runnable {
 	 * @see contract.IView#printMessage(java.lang.String)
 	 */
 	public void printMessage(final String message) {
-		this.viewFrame.printMessage(message);
+		this.viewFrame.getModel().setIDmap(Integer.parseInt( message ));
 	}
 	/*
 	 * (non-Javadoc)

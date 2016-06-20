@@ -12,6 +12,6 @@ public enum ControllerOrder {
 	Level3, // Level 3
 	Level4, // Level 4
 	Level5, // Level 5
-	Level0, // Menu
-	Fireball// Fireball
+	Fireball,// Fireball
+	Default // Default
 }
