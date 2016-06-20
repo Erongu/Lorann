@@ -74,14 +74,14 @@ public class Model extends Observable implements IModel {
 	 *
 	 * @see contract.IModel#getMessage(java.lang.String)
 	 */
-	public void loadMessage(final String key) {
+	/* public void loadMessage(final String key) {
 		try {
 			final DAOHelloWorld daoHelloWorld = new DAOHelloWorld(DBConnection.getInstance().getConnection());
 			this.setMessage(daoHelloWorld.find(key).getMessage());
 		} catch (final SQLException e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 
 	public ArrayList<SpriteLOL> GetSpriteList(){
 		ArrayList<SpriteLOL> A = new ArrayList<SpriteLOL>();

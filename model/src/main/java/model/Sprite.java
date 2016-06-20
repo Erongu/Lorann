@@ -1,9 +1,7 @@
 package model;
 
-import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.MediaTracker;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
@@ -45,7 +43,7 @@ public class Sprite {
 	
 	public void demarre(){
 		//start the movement for every type of thread
-    	//si le thread n'est pas en activité==> le réinstancier
+    	//if thread isn't started ==> instance it again
     	if(running==false)
     		{
 	       	running=true;
@@ -71,15 +69,14 @@ public class Sprite {
     	
     	
     	//BufferedImage bimgLG = new BufferedImage( 32, 32, BufferedImage.TYPE_INT_RGB);
-		//graphics.drawImage(imgLG, 0, 0, viewFrame );
+
+		 //Graphics.drawImage(imgLG, 0, 0, viewFrame );
+
+
     	
     	g.drawImage( imgLG, X, Y, imgObserver );
-    	
-       
-        
     }
 
-	
 	private class RunningThread extends Thread{
 		private RunningThread(){
 			start();

@@ -18,7 +18,7 @@ public interface IModel<SpriteLOL> {
 	 *
 	 * @return the message
 	 */
-	String getMessage();
+	// String getMessage();
 
 	/**
 	 * Load the message.
@@ -26,10 +26,16 @@ public interface IModel<SpriteLOL> {
 	 * @param key
 	 *          the key
 	 */
-	void loadMessage(String key);
-	
+//	void loadMessage(String key);
+	/** 
+	 * Load the map.
+	 * @param ID_Map
+	 */
 	public void loadMap ();
-	
+	/**
+	 * 
+	 * @return
+	 */
 	public ArrayList<SpriteLOL> GetSpriteList();
 	
 	public void setIDmap(int iDmap);

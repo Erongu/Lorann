@@ -69,10 +69,11 @@ public class Controller implements IController {
 	private void setModel(final IModel model) {
 		this.model = model;
 	}
-
-	/*
-	 * (non-Javadoc)
-	 *
+/**
+	 * link : keyboard && loading map
+	 * @see setIDmap, loadMap
+	 * @param controllerOrder
+	 * 
 	 * @see contract.IController#orderPerform(contract.ControllerOrder)
 	 */
 	public void orderPerform(final ControllerOrder controllerOrder) {
