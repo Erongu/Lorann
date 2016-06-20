@@ -3,6 +3,8 @@ package contract;
 import java.util.ArrayList;
 import java.util.Observable;
 
+//import model.SpriteLOL;
+
 //import model.Sprite.RunningThread;
 
 /**
@@ -39,6 +41,7 @@ public interface IModel<SpriteLOL> {
 	public ArrayList<SpriteLOL> GetSpriteList();
 	
 	public void setIDmap(int iDmap);
+
 	
 	public int getIDmap();
 
@@ -48,4 +51,7 @@ public interface IModel<SpriteLOL> {
 	 * @return the observable
 	 */
 	Observable getObservable();
+	
+	public ArrayList<SpriteLOL> GetSpriteLOLList();
+	public void setLorannMove(int i, int j);
 }

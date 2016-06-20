@@ -12,6 +12,17 @@ public enum ControllerOrder {
 	Level3, // Level 3
 	Level4, // Level 4
 	Level5, // Level 5
+	
 	Fireball,// Fireball
+	//	MW_MOBIL.
+	Left, 
+	Right,
+	Up,
+	Down,
+	SpaceBar,
+	
+	
+	
+	
 	Default // Default
 }

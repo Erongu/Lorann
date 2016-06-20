@@ -103,6 +103,20 @@ public class Controller implements IController {
 				this.model.setIDmap(5);
 				this.view.printMessage("5");
 				break;
+				
+			case Right:
+				this.model.setLorannMove( 1, 0 );
+				break;
+			case Left:
+				this.model.setLorannMove( -1, 0 );
+				break;
+			case Up:
+				this.model.setLorannMove( 0, -1 );
+				break;
+			case Down:
+				this.model.setLorannMove( 0, 1 );
+				break;
+				
 			default:
 				break;
 			/*case Fireball:

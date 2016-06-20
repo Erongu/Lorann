@@ -1,3 +1,4 @@
+
 package model;
 
 import java.awt.MediaTracker;
@@ -24,6 +25,10 @@ public class Model extends Observable implements IModel {
 	
 	public ArrayList<String> spritelist = new ArrayList<String>();
 	
+	//	SW_MOBIL..
+	public ArrayList<SpriteLOL> spriteLOLlist = new ArrayList<SpriteLOL>();
+
+	
 	private int IDmap;
 	
 	public int getIDmap() {
@@ -36,10 +41,71 @@ public class Model extends Observable implements IModel {
 		  
 		if (change == true){
 		spritelist = getSpriteList( );
+		//	NW_MOBIL.
+		spriteLOLlist = getSpriteLOLList( );
 		this.setChanged();
 		this.notifyObservers();
 		}
 	}
+
+	//	Move Loran in model.
+	public void setLorannMove(int deltaX, int deltaY ) {
+		
+		 for (SpriteLOL lol : spriteLOLlist) {
+			 
+			  if(lol.getType().equals( "L")) {
+				  
+				System.out.println("lolo");
+				
+				int x = lol.getX();
+				int y = lol.getY();
+				
+				
+				System.out.println( "X = " + x + ", y =" + y);
+				System.out.println( "deltatX = " + deltaX + ", deltaY =" + deltaY);
+				Boolean moveAuthorized = lorannCollision( x, y, deltaX, deltaY );
+				
+				if (moveAuthorized)
+				{
+				
+				lol.setX( x+deltaX );
+				lol.setY( y+deltaY );
+				
+				
+				this.setChanged();
+				this.notifyObservers();
+				
+				break;
+			  }
+
+			  }		  
+		 }
+	}
+	
+	//	Collision 
+	private Boolean lorannCollision( int lorannX, int lorannY, int deltaX, int deltaY ){
+		
+		
+		 for (SpriteLOL lol : spriteLOLlist) {
+			 
+				
+				int x = lol.getX();
+				int y = lol.getY();
+				
+				
+				
+				if ( ( (lorannX + deltaX) == x) &&
+					 ( (lorannY + deltaY) == y) )	return false;
+
+				
+
+			  }
+		
+		return true;
+		
+	}
+	
+	
 
 	/**
 	 * Instantiates a new model.
@@ -107,7 +173,16 @@ public class Model extends Observable implements IModel {
 			}
 		return A;
 		}
-	
+
+	//	NW_MOBIL.
+	public ArrayList<SpriteLOL> GetSpriteLOLList(){
+		
+		System.out.println("Model.GetSpriteLOLList(arg0)");
+		
+		ArrayList<SpriteLOL> A = spriteLOLlist;
+		return A;
+		}
+
 	public void loadMap () { 
 		int ID_Map = this.getIDmap();
 		spritelist = new ArrayList<String>();
@@ -170,7 +245,8 @@ public class Model extends Observable implements IModel {
 		}
 		return null;
 	}
-	 private ArrayList<String> getSpriteList() {
+
+	private ArrayList<String> getSpriteList() {
 		  
 		  ArrayList<String> A = new ArrayList<String>();
 		  ArrayList<Integer> X = new ArrayList<Integer>();
@@ -209,6 +285,35 @@ public class Model extends Observable implements IModel {
 		  
 		  return A;
 		 }
-}
 
+	//	NW_MOBIL.
+	private ArrayList<SpriteLOL> getSpriteLOLList() {
+		  
+		ArrayList<SpriteLOL> A = new ArrayList<SpriteLOL>();
+		
+		try {
+			Connection cnx = jpublankprojectDB();
+			
+		    Statement stmt = null;
+		    String query = "select ID_Object, ID_Map, ID_Type, " +
+		                   "AXIS_X, AXIS_Y " +
+		                   "from map WHERE ID_Map =" + Integer.toString(IDmap);
+	        stmt = cnx.createStatement();
+	        ResultSet rs = stmt.executeQuery(query);
+
+	        while (rs.next()) {
+	        	
+	            A.add(new SpriteLOL(rs.getString("ID_Type").trim(),rs.getInt("AXIS_X"),rs.getInt("AXIS_Y")));
+
+	        }
+		}
+	        catch (final SQLException e) {
+				e.printStackTrace();
+			}
+		return A;
+		
+
+		 }
+
+}
 

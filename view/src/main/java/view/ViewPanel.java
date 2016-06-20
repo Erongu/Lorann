@@ -142,13 +142,15 @@ class ViewPanel extends JPanel implements Observer {
 		// Sprite sprite = new Sprite( 40, 40, "BH", "c:/sprite/lorann_b.png", graphics );
 		// sprite.demarre();
 		 
-		 ArrayList<SpriteLOL> spriteList = this.viewFrame.getModel().GetSpriteList();
+		 //	NW_MOBIL.
+		 //ArrayList<SpriteLOL> spriteList = this.viewFrame.getModel().GetSpriteList();
+		 ArrayList<SpriteLOL> spriteList = this.viewFrame.getModel().GetSpriteLOLList();
 		 
 		 if (spriteList != null){
 		 
 		 for (SpriteLOL lol : spriteList) {
 			  
-			 System.out.println(lol.getX()+"/"+  lol.getY()+lol.getType());
+			 //System.out.println(lol.getX()+"/"+  lol.getY()+lol.getType());
 			  if(lol.getType().equals( "B")){
 			  graphics.drawImage(imgB, lol.getX()*32, lol.getY()*32, viewFrame);
 			  }
@@ -187,7 +189,22 @@ class ViewPanel extends JPanel implements Observer {
 			  {
 			  graphics.drawImage(imgGL, lol.getX()*32,lol.getY()*32 , viewFrame);  
 			  }
-		  }
+
+		 }
+			  
+			  //	Boucle des mobiles.
+			  
+			for (SpriteLOL lol : spriteList) {
+				  if(lol.getType().equals("L"))
+				  {
+					  //	PROVISOIRE.
+				  graphics.drawImage(imgLG, lol.getX()*32,lol.getY()*32 , viewFrame);  
+				  }
+					  
+			}
+			  
+			  
+		  
 		 
 		 //ImageObserver IO = ImageObserver;
 		 
