@@ -69,7 +69,10 @@ public class Sprite {
     	
     	
     	//BufferedImage bimgLG = new BufferedImage( 32, 32, BufferedImage.TYPE_INT_RGB);
+
 		 //Graphics.drawImage(imgLG, 0, 0, viewFrame );
+
+
     	
     	g.drawImage( imgLG, X, Y, imgObserver );
     }

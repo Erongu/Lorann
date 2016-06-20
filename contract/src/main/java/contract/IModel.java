@@ -3,12 +3,15 @@ package contract;
 import java.util.ArrayList;
 import java.util.Observable;
 
+//import model.Sprite.RunningThread;
+
 /**
  * The Interface IModel.
+ * @param <SpriteLOL>
  *
- * @author Jean-Aymeric Diet
+ *
  */
-public interface IModel {
+public interface IModel<SpriteLOL> {
 
 	/**
 	 * Gets the message.
@@ -33,7 +36,7 @@ public interface IModel {
 	 * 
 	 * @return
 	 */
-	public ArrayList<String> GetSpriteList();
+	public ArrayList<SpriteLOL> GetSpriteList();
 	
 	public void setIDmap(int iDmap);
 	

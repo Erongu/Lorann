@@ -59,6 +59,8 @@ public class View implements IView, Runnable {
 				return ControllerOrder.Level4;
 			case KeyEvent.VK_5:
 				return ControllerOrder.Level5;
+			case KeyEvent.VK_SPACE:
+				return ControllerOrder.Fireball;
 			default:
 				return ControllerOrder.Level0;
 		}		

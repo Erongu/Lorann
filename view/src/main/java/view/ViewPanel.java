@@ -20,6 +20,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
 import model.Sprite;
+import model.SpriteLOL;
 
 class ViewPanel extends JPanel implements Observer {
 
@@ -137,50 +138,55 @@ class ViewPanel extends JPanel implements Observer {
 		// Sprite sprite = new Sprite( 40, 40, "BH", "c:/sprite/lorann_b.png", graphics );
 		// sprite.demarre();
 		 
-		 ArrayList<String> spriteList = this.viewFrame.getModel().GetSpriteList();
+		 ArrayList<SpriteLOL> spriteList = this.viewFrame.getModel().GetSpriteList();
 		 
 		 if (spriteList != null){
 		 
-		 for (int i = 0; i < spriteList.size(); i++) {
+		 for (SpriteLOL lol : spriteList) {
 			  
-			 System.out.println(spriteList.get(i));
-			  if(spriteList.get(i).equals( "B")){
+			 System.out.println(lol.getX()+"/"+  lol.getY()+lol.getType());
+			  if(lol.getType().equals( "B")){
 				  BufferedImage bimgB = new BufferedImage( imgB.getWidth(viewFrame), imgB.getHeight(viewFrame), BufferedImage.TYPE_INT_RGB);
-			  graphics.drawImage(imgB, i*32, i*32, viewFrame);
+			  graphics.drawImage(imgB, lol.getX()*32, lol.getY()*32, viewFrame);
 			  }
-			  else if (spriteList.get(i).equals("BH")){
+			  else if (lol.getType().equals("BH")){
 				  BufferedImage bimgBH = new BufferedImage( imgBH.getWidth(viewFrame), imgBH.getHeight(viewFrame), BufferedImage.TYPE_INT_RGB);
-			  graphics.drawImage(imgBH, i*32, i*32, viewFrame);
+			  graphics.drawImage(imgBH, lol.getX()*32, lol.getY()*32, viewFrame);
 			  }
-			  else if(spriteList.get(i).equals("BV"))
+			  else if(lol.getType().equals("BV"))
 			  {
 				  BufferedImage bimgP = new BufferedImage( imgBV.getWidth(viewFrame), imgBV.getHeight(viewFrame), BufferedImage.TYPE_INT_RGB);
-			  graphics.drawImage(imgBV, i*32, i*32, viewFrame);
+			  graphics.drawImage(imgBV, lol.getX()*32, lol.getY()*32, viewFrame);
 			  }
-			  else if(spriteList.get(i).equals("CB"))
+			  else if(lol.getType().equals("CB"))
 			  {
 				  BufferedImage bimgCB = new BufferedImage( imgCB.getWidth(viewFrame), imgCB.getHeight(viewFrame), BufferedImage.TYPE_INT_RGB);
-			  graphics.drawImage(imgCB, i*32, i*32, viewFrame);
+			  graphics.drawImage(imgCB, lol.getX()*32, lol.getY()*32, viewFrame);
 			  }
-			  else if(spriteList.get(i).equals("M1"))
+			  else if(lol.getType().equals("M1"))
 			  {
 				  BufferedImage bimgM1 = new BufferedImage( imgM1.getWidth(viewFrame), imgM1.getHeight(viewFrame), BufferedImage.TYPE_INT_RGB);
-			  graphics.drawImage(imgM1, i*32, i*32, viewFrame);
+			  graphics.drawImage(imgM1, lol.getX()*32, lol.getY()*32, viewFrame);
 			  }
-			  else if(spriteList.get(i).equals("M2"))
+			  else if(lol.getType().equals("M2"))
 			  {
 				  BufferedImage bimgM2 = new BufferedImage( imgM2.getWidth(viewFrame), imgM2.getHeight(viewFrame), BufferedImage.TYPE_INT_RGB);
-			  graphics.drawImage(imgM2, i*32, i*32, viewFrame);
+			  graphics.drawImage(imgM2, lol.getX()*32, lol.getY()*32, viewFrame);
 			  }
-			  else if(spriteList.get(i).equals("M3"))
+			  else if(lol.getType().equals("M3"))
 			  {
 				  BufferedImage bimgM3 = new BufferedImage( imgM3.getWidth(viewFrame), imgM3.getHeight(viewFrame), BufferedImage.TYPE_INT_RGB);
-			  graphics.drawImage(imgM3, i*32, i*32, viewFrame);
+			  graphics.drawImage(imgM3, lol.getX()*32, lol.getY()*32, viewFrame);
 			  }
-			  else if(spriteList.get(i).equals("M4"))
+			  else if(lol.getType().equals("M4"))
 			  {
 				  BufferedImage bimgM4 = new BufferedImage( imgM4.getWidth(viewFrame), imgM4.getHeight(viewFrame), BufferedImage.TYPE_INT_RGB);
-			  graphics.drawImage(imgM4, i*32,i*32 , viewFrame);  
+			  graphics.drawImage(imgM4, lol.getX()*32,lol.getY()*32 , viewFrame);  
+			  }
+			  else if(lol.getType().equals("P"))
+			  {
+				  BufferedImage bimgP = new BufferedImage( imgP.getWidth(viewFrame), imgP.getHeight(viewFrame), BufferedImage.TYPE_INT_RGB);
+			  graphics.drawImage(imgP, lol.getX()*32,lol.getY()*32 , viewFrame);  
 			  }
 		  }
 		 

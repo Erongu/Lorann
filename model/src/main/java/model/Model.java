@@ -76,8 +76,8 @@ public class Model extends Observable implements IModel {
 		}
 	}*/
 
-	public ArrayList<String> GetSpriteList(){
-		ArrayList<String> A = new ArrayList<String>();
+	public ArrayList<SpriteLOL> GetSpriteList(){
+		ArrayList<SpriteLOL> A = new ArrayList<SpriteLOL>();
 		
 		try {
 			Connection cnx = jpublankprojectDB();
@@ -91,26 +91,18 @@ public class Model extends Observable implements IModel {
 
 	        while (rs.next()) {
 	        	
-	            A.add(rs.getString("ID_Type").trim());
+	            A.add(new SpriteLOL(rs.getString("ID_Type").trim(),rs.getInt("AXIS_X"),rs.getInt("AXIS_Y")));
 
 	        }
 		}
 	        catch (final SQLException e) {
 				e.printStackTrace();
 			}
-		/*A.add("BH");
-		A.add("B");
-		A.add("BH");
-		A.add("B");
-		A.add("B");*/
 		return A;
 		}
-		
-
-	
 	
 	public void loadMap () { 
-		int ID_Map = this.getIDmap();/*
+		int ID_Map = this.getIDmap();
 		spritelist = new ArrayList<String>();
 		try {
 			Connection cnx = jpublankprojectDB();
@@ -133,7 +125,7 @@ public class Model extends Observable implements IModel {
 			;
 		} catch (final SQLException e) {
 			e.printStackTrace();
-		}*/
+		}
 		return;
 	}
 	
