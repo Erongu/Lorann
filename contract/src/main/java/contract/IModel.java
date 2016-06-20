@@ -15,7 +15,7 @@ public interface IModel {
 	 *
 	 * @return the message
 	 */
-	String getMessage();
+	// String getMessage();
 
 	/**
 	 * Load the message.
@@ -23,10 +23,16 @@ public interface IModel {
 	 * @param key
 	 *          the key
 	 */
-	void loadMessage(String key);
-	
+//	void loadMessage(String key);
+	/** 
+	 * Load the map.
+	 * @param ID_Map
+	 */
 	public void loadMap ();
-	
+	/**
+	 * 
+	 * @return
+	 */
 	public ArrayList<String> GetSpriteList();
 	
 	public void setIDmap(int iDmap);
