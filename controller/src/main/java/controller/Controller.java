@@ -94,10 +94,13 @@ public class Controller implements IController {
 				this.model.setIDmap(5);
 				this.model.loadMap();
 				break;
-			default:
+			case Level0:
 				this.model.setIDmap(0);
 				this.model.loadMap();
 				break;
+			/*case Fireball:
+				this.model.run();
+				break;*/
 		}
 	}
 
