@@ -19,7 +19,7 @@ public interface IModel<SpriteLOL> {
 	 * Load the map.
 	 * @param ID_Map
 	 */
-	public void loadMap ();
+	//public void loadMap ();
 
 	public ArrayList<SpriteLOL> GetSpriteList();
 	/**
@@ -27,9 +27,7 @@ public interface IModel<SpriteLOL> {
 	 * @param iDmap
 	 */
 	public void setIDmap(int iDmap);
-	
-	//public static Boolean permission;
-	
+		
 	public int getIDmap();
 
 	/**
@@ -38,6 +36,7 @@ public interface IModel<SpriteLOL> {
 	 * @return the observable
 	 */
 	Observable getObservable();
+	
 	public int getScore();
 	
 	public ArrayList<SpriteLOL> GetSpriteLOLList();

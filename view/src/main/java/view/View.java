@@ -63,15 +63,22 @@ public class View implements IView, Runnable {
 			case KeyEvent.VK_SPACE:
 				return ControllerOrder.Fireball;
 				
-			case KeyEvent.VK_LEFT:
+			case KeyEvent.VK_NUMPAD4:
 				return ControllerOrder.Left;
-			case KeyEvent.VK_UP:
+			case KeyEvent.VK_NUMPAD8:
 				return ControllerOrder.Up;
-			case KeyEvent.VK_DOWN:
+			case KeyEvent.VK_NUMPAD2:
 				return ControllerOrder.Down;
-			case KeyEvent.VK_RIGHT:
+			case KeyEvent.VK_NUMPAD6:
 				return ControllerOrder.Right;
-				
+			case KeyEvent.VK_NUMPAD9:
+				return ControllerOrder.UpRight;
+			case KeyEvent.VK_NUMPAD7:
+				return ControllerOrder.UpLeft;
+			case KeyEvent.VK_NUMPAD3:
+				return ControllerOrder.DownRight;
+			case KeyEvent.VK_NUMPAD1:
+				return ControllerOrder.DownLeft;
 				
 				
 			default:
