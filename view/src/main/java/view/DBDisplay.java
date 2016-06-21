@@ -18,9 +18,9 @@ import javax.swing.JMenuItem;
  *
  * @author 
  */
-public class MenuSwing extends JMenuBar {
+public class DBDisplay extends JMenuBar {
 
-    public MenuSwing() {
+    public DBDisplay() {
     // Listener general : the action of menu user
     ActionListener afficherMenuListener = new ActionListener() {
     public void actionPerformed(ActionEvent event) {
@@ -77,6 +77,7 @@ public class MenuSwing extends JMenuBar {
 };
 
 // Create file JMenu
+		
 		JMenu fichierMenu = new JMenu("Levels");
 
 			JMenuItem item = new JMenuItem("Level 1", '1');

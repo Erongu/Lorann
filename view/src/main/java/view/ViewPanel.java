@@ -1,6 +1,8 @@
 package view;
 import java.awt.Color;
+
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.MediaTracker;
@@ -21,6 +23,7 @@ import javax.swing.JPanel;
 
 import model.Sprite;
 import model.SpriteLOL;
+import model.Model;
 
 class ViewPanel extends JPanel implements Observer {
 
@@ -75,7 +78,8 @@ class ViewPanel extends JPanel implements Observer {
 		System.out.println("ViewPanel.update()");
 		
 		this.repaint();
-	}
+		}
+
 
 	/*
 	 * (non-Javadoc)
@@ -85,18 +89,32 @@ class ViewPanel extends JPanel implements Observer {
 	@Override
 	
 	/**
-	 * Draw Sprites
+	 * Draw Sprite
+	 * @param Graphics
 	 */
-	protected void paintComponent(final Graphics graphics) {
+	protected void paintComponent(final Graphics graphics ) {
 		
 		System.out.println("ViewPanel.paintComponent( ) : " + graphics.toString());
-
+		int idMap = this.viewFrame.getModel().getIDmap();
 		
-		//graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
-		//graphics.drawString( "Message" /*this.getViewFrame().getModel().getMessage()*/, 10, 20) ;
-		
-	    graphics.setColor(Color.BLACK);
+		graphics.setColor(Color.black);
 	    graphics.fillRect(0, 0,1000, 1000);
+	    graphics.setColor(Color.white);
+	    
+	    Font fonte = new Font("TimesRoman", Font.BOLD,20);
+		graphics.setFont(fonte);
+		graphics.drawString( "Score : " + this.getViewFrame().getModel().getScore() , 10, 12*32+40) ;
+		
+		ArrayList<SpriteLOL> spriteList = this.viewFrame.getModel().GetSpriteLOLList();
+		
+	    
+	    if( idMap == 0 ) 
+	    	{
+	    	if(spriteList.size() > 0 ) graphics.drawString( "Score : " + this.getViewFrame().getModel().getScore()+ " - Game Over", 10, 12*32+40) ;
+	    	
+	    	return;
+	    	}
+	    
 		  System.out.println( "ViewPanel.paintComponent( ) : DrawImage()" );
 		  
 		  // NW_EXEAMPLE - Display a sprite.
@@ -116,6 +134,7 @@ class ViewPanel extends JPanel implements Observer {
 		  java.awt.Image imgM3 = tk.getImage("C:/sprite/monster_3.png");
 		  java.awt.Image imgM4 = tk.getImage("C:/sprite/monster_4.png");
 		  java.awt.Image imgGL = tk.getImage("C:/sprite/gate_closed.png");
+		  java.awt.Image imgGU = tk.getImage("c:/sprite/gate_open.png");
 		  // Image is load on first use.
 		  
 		  MediaTracker mt = new MediaTracker(this);
@@ -132,6 +151,8 @@ class ViewPanel extends JPanel implements Observer {
 		  mt.addImage(imgM3, 10);
 		  mt.addImage(imgM4, 11);
 		  mt.addImage(imgGL, 12);
+		  mt.addImage(imgGU, 13);
+		  
 		  
 		  try {
 		     mt.waitForID(0);         // Image is in memory.
@@ -139,7 +160,7 @@ class ViewPanel extends JPanel implements Observer {
 		  
 		  catch(InterruptedException e) {} 
 		  
-		 int idMap = this.viewFrame.getModel().getIDmap();
+		 
 		  
 		 System.out.println( "Id_Map = " + idMap);
 		 
@@ -148,7 +169,6 @@ class ViewPanel extends JPanel implements Observer {
 		 
 		 //	NW_MOBIL.
 		 //ArrayList<SpriteLOL> spriteList = this.viewFrame.getModel().GetSpriteList();
-		 ArrayList<SpriteLOL> spriteList = this.viewFrame.getModel().GetSpriteLOLList();
 		 
 		 if (spriteList != null){
 		 
@@ -193,27 +213,22 @@ class ViewPanel extends JPanel implements Observer {
 			  {
 			  graphics.drawImage(imgGL, lol.getX()*32,lol.getY()*32 , viewFrame);  
 			  }
+			  else if(lol.getType().equals("P")){
+			  graphics.drawImage(imgP, lol.getX()*32,lol.getY()*32 , viewFrame);
+			  }
+			  else if(lol.getType().equals("GU"))
+				  graphics.drawImage(imgGU, lol.getX()*32,lol.getY()*32 , viewFrame);
 
 		 }
-			  
-			  //	Boucle des mobiles.
+	
+			  //	Same for Movable sprite
 			  
 			for (SpriteLOL lol : spriteList) {
 				  if(lol.getType().equals("L"))
 				  {
-					  //	PROVISOIRE.
 				  graphics.drawImage(imgLG, lol.getX()*32,lol.getY()*32 , viewFrame);  
 				  }
-					  
 			}
-			  
-			  
-		  
-		 
-		 //ImageObserver IO = ImageObserver;
-		 
-		  //BufferedImage bimgLG = new BufferedImage( 32, 32, BufferedImage.TYPE_INT_RGB);
-		  //graphics.drawImage( imgB, 0, 0, viewFrame);
-	}
+		 }
 }
 }
