@@ -3,34 +3,31 @@ package contract;
 import java.util.ArrayList;
 import java.util.Observable;
 
+//import model.SpriteLOL;
+
+//import model.Sprite.RunningThread;
+
 /**
  * The Interface IModel.
+ * @param <SpriteLOL>
  *
- * @author Jean-Aymeric Diet
+ *
  */
-public interface IModel {
+public interface IModel<SpriteLOL> {
 
-	/**
-	 * Gets the message.
-	 *
-	 * @return the message
+	/** 
+	 * Load the map.
+	 * @param ID_Map
 	 */
-	String getMessage();
-
-	/**
-	 * Load the message.
-	 *
-	 * @param key
-	 *          the key
-	 */
-	void loadMessage(String key);
-	
 	public void loadMap ();
-	
-	public ArrayList<String> GetSpriteList();
-	
+
+	public ArrayList<SpriteLOL> GetSpriteList();
+	/**
+	 * setIDmap
+	 * @param iDmap
+	 */
 	public void setIDmap(int iDmap);
-	
+
 	public int getIDmap();
 
 	/**
@@ -39,4 +36,13 @@ public interface IModel {
 	 * @return the observable
 	 */
 	Observable getObservable();
+
+
+	public ArrayList<SpriteLOL> GetSpriteLOLList();
+	/**
+	 * setLorannMove
+	 * @param i
+	 * @param j
+	 */
+	public void setLorannMove(int i, int j);
 }

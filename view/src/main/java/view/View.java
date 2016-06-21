@@ -59,8 +59,23 @@ public class View implements IView, Runnable {
 				return ControllerOrder.Level4;
 			case KeyEvent.VK_5:
 				return ControllerOrder.Level5;
+				
+			case KeyEvent.VK_SPACE:
+				return ControllerOrder.Fireball;
+				
+			case KeyEvent.VK_LEFT:
+				return ControllerOrder.Left;
+			case KeyEvent.VK_UP:
+				return ControllerOrder.Up;
+			case KeyEvent.VK_DOWN:
+				return ControllerOrder.Down;
+			case KeyEvent.VK_RIGHT:
+				return ControllerOrder.Right;
+				
+				
+				
 			default:
-				return ControllerOrder.Level0;
+				return ControllerOrder.Default;
 		}		
 	}
 	/*
@@ -69,7 +84,7 @@ public class View implements IView, Runnable {
 	 * @see contract.IView#printMessage(java.lang.String)
 	 */
 	public void printMessage(final String message) {
-		this.viewFrame.printMessage(message);
+		this.viewFrame.getModel().setIDmap(Integer.parseInt( message ));
 	}
 	/*
 	 * (non-Javadoc)

@@ -37,13 +37,17 @@ class ViewFrame extends JFrame implements KeyListener {
 	 *           the headless exception
 	 */
 	
-	//	Paramètrer la fenêtre.
+	
+	/**
+	 * Param windows
+	 * @param model
+	 * @throws HeadlessException
+	 */
 	public ViewFrame(final IModel model) throws HeadlessException {
 		
 		this.buildViewFrame( model );
 		
-		setSize(800,600);
-		setResizable(true);
+		setSize(20*32+10,12*32+40);
 		
 		//	NW_MODIF : Background color of the main windows.
 		setBackground( Color.BLACK );
@@ -55,7 +59,7 @@ class ViewFrame extends JFrame implements KeyListener {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
 		
 		//	Add Menu for level selection.
-		setJMenuBar( new MenuSwing() );
+		//setJMenuBar( new MenuSwing() );
 		
 	}
 	
@@ -156,7 +160,7 @@ class ViewFrame extends JFrame implements KeyListener {
 		this.setModel( model );
 		
 		this.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
-		this.setResizable(true);
+		this.setResizable(false);
 		this.addKeyListener(this);
 		
 		ViewPanel vPanel = new ViewPanel(this);

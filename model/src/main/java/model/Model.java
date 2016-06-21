@@ -1,3 +1,4 @@
+
 package model;
 
 import java.awt.MediaTracker;
@@ -24,15 +25,96 @@ public class Model extends Observable implements IModel {
 	
 	public ArrayList<String> spritelist = new ArrayList<String>();
 	
-	private int IDmap;
+	//	SW_MOBIL..
+	public ArrayList<SpriteLOL> spriteLOLlist = new ArrayList<SpriteLOL>();
+
 	
+	private int IDmap;
+
 	public int getIDmap() {
 		return IDmap;
 	}
 
 	public void setIDmap(int iDmap) {
+		Boolean change = (IDmap != iDmap); 
 		IDmap = iDmap;
+		  
+		if (change == true){
+		spritelist = getSpriteList( );
+		//	NW_MOBIL.
+		spriteLOLlist = getSpriteLOLList( );
+		this.setChanged();
+		this.notifyObservers();
+		}
 	}
+
+	//	Move Loran in model
+	
+	public void setLorannMove(int deltaX, int deltaY ) {
+		
+		 for (SpriteLOL lol : spriteLOLlist) {
+			 
+			  if(lol.getType().equals( "L")) {
+				  
+				System.out.println("lolo");
+				
+				int x = lol.getX();
+				int y = lol.getY();
+				
+				
+				System.out.println( "X = " + x + ", y =" + y);
+				System.out.println( "deltatX = " + deltaX + ", deltaY =" + deltaY);
+				Boolean moveAuthorized = lorannCollision( x, y, deltaX, deltaY );
+				
+				if (moveAuthorized)
+				{
+				
+				lol.setX( x+deltaX );
+				lol.setY( y+deltaY );
+				
+				
+				this.setChanged();
+				this.notifyObservers();
+				
+				break;
+			  }
+
+			  }		  
+		 }
+	}
+	
+	//	Collision 
+	/**
+	 * Collision Management
+	 * @param lorannX
+	 * @param lorannY
+	 * @param deltaX
+	 * @param deltaY
+	 * @return
+	 */
+	private Boolean lorannCollision( int lorannX, int lorannY, int deltaX, int deltaY ){
+		
+		
+		 for (SpriteLOL lol : spriteLOLlist) {
+			 
+				
+				int x = lol.getX();
+				int y = lol.getY();
+				
+				
+				
+				if ( ( (lorannX + deltaX) == x) &&
+					 ( (lorannY + deltaY) == y) )	return false;
+
+				
+
+			  }
+		
+		return true;
+		
+	}
+	
+	
 
 	/**
 	 * Instantiates a new model.
@@ -67,17 +149,17 @@ public class Model extends Observable implements IModel {
 	 *
 	 * @see contract.IModel#getMessage(java.lang.String)
 	 */
-	public void loadMessage(final String key) {
+	/* public void loadMessage(final String key) {
 		try {
 			final DAOHelloWorld daoHelloWorld = new DAOHelloWorld(DBConnection.getInstance().getConnection());
 			this.setMessage(daoHelloWorld.find(key).getMessage());
 		} catch (final SQLException e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 
-	public ArrayList<String> GetSpriteList(){
-		ArrayList<String> A = new ArrayList<String>();
+	public ArrayList<SpriteLOL> GetSpriteList(){
+		ArrayList<SpriteLOL> A = new ArrayList<SpriteLOL>();
 		
 		try {
 			Connection cnx = jpublankprojectDB();
@@ -85,32 +167,33 @@ public class Model extends Observable implements IModel {
 		    Statement stmt = null;
 		    String query = "select ID_Object, ID_Map, ID_Type, " +
 		                   "AXIS_X, AXIS_Y " +
-		                   "from map WHERE ID_Map =" + Integer.toString(1);
+		                   "from map WHERE ID_Map =" + Integer.toString(IDmap);
 	        stmt = cnx.createStatement();
 	        ResultSet rs = stmt.executeQuery(query);
 
 	        while (rs.next()) {
 	        	
-	            A.add(rs.getString("ID_Type").trim());
+	            A.add(new SpriteLOL(rs.getString("ID_Type").trim(),rs.getInt("AXIS_X"),rs.getInt("AXIS_Y")));
 
 	        }
 		}
 	        catch (final SQLException e) {
 				e.printStackTrace();
 			}
-		/*A.add("BH");
-		A.add("B");
-		A.add("BH");
-		A.add("B");
-		A.add("B");*/
 		return A;
 		}
-		
 
-	
-	
+	//	NW_MOBIL.
+	public ArrayList<SpriteLOL> GetSpriteLOLList(){
+		
+		System.out.println("Model.GetSpriteLOLList(arg0)");
+		
+		ArrayList<SpriteLOL> A = spriteLOLlist;
+		return A;
+		}
+
 	public void loadMap () { 
-		int ID_Map = this.getIDmap();/*
+		int ID_Map = this.getIDmap();
 		spritelist = new ArrayList<String>();
 		try {
 			Connection cnx = jpublankprojectDB();
@@ -133,7 +216,7 @@ public class Model extends Observable implements IModel {
 			;
 		} catch (final SQLException e) {
 			e.printStackTrace();
-		}*/
+		}
 		return;
 	}
 	
@@ -171,6 +254,75 @@ public class Model extends Observable implements IModel {
 		}
 		return null;
 	}
-}
 
+	private ArrayList<String> getSpriteList() {
+		  
+		  ArrayList<String> A = new ArrayList<String>();
+		  ArrayList<Integer> X = new ArrayList<Integer>();
+		  ArrayList<Integer> Y = new ArrayList<Integer>();
+
+		  try {
+		   Connection cnx = jpublankprojectDB();
+
+		   Statement stmt = null;
+		   String query = "select ID_Object, ID_Map, ID_Type, AXIS_X, AXIS_Y " + 
+		         "from map WHERE ID_Map = " + Integer.toString( IDmap );
+		   stmt = cnx.createStatement();
+		   ResultSet rs = stmt.executeQuery(query);
+
+		   while (rs.next()) {
+
+		    A.add(rs.getString("ID_Type").trim());
+		    X.add(rs.getInt("AXIS_X"));
+		    Y.add(rs.getInt("AXIS_Y"));
+
+		   }
+		  } catch (final SQLException e) {
+		   e.printStackTrace();
+		  }
+		  System.out.println("Model.getSpriteList() : IDmap = " + IDmap + ", Nb Sprites = " + A.size());
+		  
+		  spritelist = A;
+		  //spritelistX = X;
+		  //spritelistY = Y;
+		  
+		  // Indicate that the object has changed to all Observers.
+		  //this.setChanged();
+		  //this.notifyObservers();
+		  
+		  //System.out.println( "Model.GetSpriteList() : Nb d'observateurs = " + this.countObservers() );
+		  
+		  return A;
+		 }
+
+	//	NW_MOBIL.
+	private ArrayList<SpriteLOL> getSpriteLOLList() {
+		  
+		ArrayList<SpriteLOL> A = new ArrayList<SpriteLOL>();
+		
+		try {
+			Connection cnx = jpublankprojectDB();
+			
+		    Statement stmt = null;
+		    String query = "select ID_Object, ID_Map, ID_Type, " +
+		                   "AXIS_X, AXIS_Y " +
+		                   "from map WHERE ID_Map =" + Integer.toString(IDmap);
+	        stmt = cnx.createStatement();
+	        ResultSet rs = stmt.executeQuery(query);
+
+	        while (rs.next()) {
+	        	
+	            A.add(new SpriteLOL(rs.getString("ID_Type").trim(),rs.getInt("AXIS_X"),rs.getInt("AXIS_Y")));
+
+	        }
+		}
+	        catch (final SQLException e) {
+				e.printStackTrace();
+			}
+		return A;
+		
+
+		 }
+
+}
 

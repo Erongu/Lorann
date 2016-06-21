@@ -19,7 +19,10 @@ public class Controller implements IController {
 
 	/** The model. */
 	private IModel	model;
+	
+	/** Current Level */
 
+	private int LevelId;
 	/**
 	 * Instantiates a new controller.
 	 *
@@ -66,39 +69,67 @@ public class Controller implements IController {
 	private void setModel(final IModel model) {
 		this.model = model;
 	}
-
-	/*
-	 * (non-Javadoc)
-	 *
+/**
+	 * link : keyboard && loading map
+	 * @see setIDmap, loadMap
+	 * @param controllerOrder
+	 * 
 	 * @see contract.IController#orderPerform(contract.ControllerOrder)
 	 */
 	public void orderPerform(final ControllerOrder controllerOrder) {
 		switch (controllerOrder) {
 			case Level1:
+				setLevelId(1);
 				this.model.setIDmap(1);
-				this.model.loadMap();
+				this.view.printMessage("1");
 				break;
 			case Level2:
+				setLevelId(2);
 				this.model.setIDmap(2);
-				this.model.loadMap();
+				this.view.printMessage("2");
 				break;
 			case Level3:
+				setLevelId(3);
 				this.model.setIDmap(3);
-				this.model.loadMap();
+				this.view.printMessage("3");
 				break;
 			case Level4:
+				setLevelId(4);
 				this.model.setIDmap(4);
-				this.model.loadMap();
+				this.view.printMessage("4");
 				break;
 			case Level5:
+				setLevelId(5);
 				this.model.setIDmap(5);
-				this.model.loadMap();
+				this.view.printMessage("5");
 				break;
+				
+			case Right:
+				this.model.setLorannMove( 1, 0 );
+				break;
+			case Left:
+				this.model.setLorannMove( -1, 0 );
+				break;
+			case Up:
+				this.model.setLorannMove( 0, -1 );
+				break;
+			case Down:
+				this.model.setLorannMove( 0, 1 );
+				break;
+				
 			default:
-				this.model.setIDmap(0);
-				this.model.loadMap();
 				break;
+			/*case Fireball:
+				this.model.run();
+				break;*/
 		}
 	}
-
+	
+	/**
+	 * Choice of Level
+	 * @param levelId
+	 */
+	public void setLevelId(int levelId){
+		LevelId = levelId;
+	}
 }

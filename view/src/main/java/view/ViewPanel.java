@@ -20,6 +20,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
 import model.Sprite;
+import model.SpriteLOL;
 
 class ViewPanel extends JPanel implements Observer {
 
@@ -82,6 +83,10 @@ class ViewPanel extends JPanel implements Observer {
 	 * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
 	 */
 	@Override
+	
+	/**
+	 * Draw Sprites
+	 */
 	protected void paintComponent(final Graphics graphics) {
 		
 		System.out.println("ViewPanel.paintComponent( ) : " + graphics.toString());
@@ -90,7 +95,8 @@ class ViewPanel extends JPanel implements Observer {
 		//graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
 		//graphics.drawString( "Message" /*this.getViewFrame().getModel().getMessage()*/, 10, 20) ;
 		
-		  
+	    graphics.setColor(Color.BLACK);
+	    graphics.fillRect(0, 0,1000, 1000);
 		  System.out.println( "ViewPanel.paintComponent( ) : DrawImage()" );
 		  
 		  // NW_EXEAMPLE - Display a sprite.
@@ -98,18 +104,18 @@ class ViewPanel extends JPanel implements Observer {
 		  Toolkit tk = Toolkit.getDefaultToolkit();
 		        //Gif, Jpeg ou png.
 		  
-		  java.awt.Image imgL = tk.getImage("c:/sprite/lorann_b.png");
-		  java.awt.Image imgLG = tk.getImage("c:/sprite/lorann_GIF.gif");
-		  java.awt.Image imgB = tk.getImage("c:/sprite/bone.png");
-		  java.awt.Image imgBH = tk.getImage("c:/sprite/horizontal_bone.png") ;
-		  java.awt.Image imgBV = tk.getImage("c:/sprite/vertical_bone.png");
-		  java.awt.Image imgP = tk.getImage("c:/sprite/purse.png");
-		  java.awt.Image imgCB = tk.getImage("c:/sprite/crystal_ball.png");
-		  java.awt.Image imgM1 = tk.getImage("c:/sprite/monster_1");
-		  java.awt.Image imgM2 = tk.getImage("c:/sprite/monster_2");
-		  java.awt.Image imgM3 = tk.getImage("c:/sprite/monster_3");
-		  java.awt.Image imgM4 = tk.getImage("c:/sprite/mosnter_4");
-		  
+		  java.awt.Image imgL = tk.getImage("C:/sprite/lorann_b.png");
+		  java.awt.Image imgLG = tk.getImage("C:/sprite/lorann_GIF.gif");
+		  java.awt.Image imgB = tk.getImage("C:/sprite/bone.png");
+		  java.awt.Image imgBH = tk.getImage("C:/sprite/horizontal_bone.png") ;
+		  java.awt.Image imgBV = tk.getImage("C:/sprite/vertical_bone.png");
+		  java.awt.Image imgP = tk.getImage("C:/sprite/purse.png");
+		  java.awt.Image imgCB = tk.getImage("C:/sprite/crystal_ball.png");
+		  java.awt.Image imgM1 = tk.getImage("C:/sprite/monster_1.png");
+		  java.awt.Image imgM2 = tk.getImage("C:/sprite/monster_2.png");
+		  java.awt.Image imgM3 = tk.getImage("C:/sprite/monster_3.png");
+		  java.awt.Image imgM4 = tk.getImage("C:/sprite/monster_4.png");
+		  java.awt.Image imgGL = tk.getImage("C:/sprite/gate_closed.png");
 		  // Image is load on first use.
 		  
 		  MediaTracker mt = new MediaTracker(this);
@@ -125,6 +131,7 @@ class ViewPanel extends JPanel implements Observer {
 		  mt.addImage(imgM2, 9);
 		  mt.addImage(imgM3, 10);
 		  mt.addImage(imgM4, 11);
+		  mt.addImage(imgGL, 12);
 		  
 		  try {
 		     mt.waitForID(0);         // Image is in memory.
@@ -132,57 +139,76 @@ class ViewPanel extends JPanel implements Observer {
 		  
 		  catch(InterruptedException e) {} 
 		  
-		 System.out.println( "Id_Map = " + this.viewFrame.getModel().getIDmap());
+		 int idMap = this.viewFrame.getModel().getIDmap();
+		  
+		 System.out.println( "Id_Map = " + idMap);
 		 
 		// Sprite sprite = new Sprite( 40, 40, "BH", "c:/sprite/lorann_b.png", graphics );
 		// sprite.demarre();
 		 
-		 ArrayList<String> spriteList = this.viewFrame.getModel().GetSpriteList();
+		 //	NW_MOBIL.
+		 //ArrayList<SpriteLOL> spriteList = this.viewFrame.getModel().GetSpriteList();
+		 ArrayList<SpriteLOL> spriteList = this.viewFrame.getModel().GetSpriteLOLList();
 		 
 		 if (spriteList != null){
 		 
-		 for (int i = 0; i < spriteList.size(); i++) {
+		 for (SpriteLOL lol : spriteList) {
 			  
-			 System.out.println(spriteList.get(i));
-			  if(spriteList.get(i).equals( "B")){
-				  BufferedImage bimgB = new BufferedImage( imgB.getWidth(viewFrame), imgB.getHeight(viewFrame), BufferedImage.TYPE_INT_RGB);
-			  graphics.drawImage(imgB, i*32, i*32, viewFrame);
+			 //System.out.println(lol.getX()+"/"+  lol.getY()+lol.getType());
+			  if(lol.getType().equals( "B")){
+			  graphics.drawImage(imgB, lol.getX()*32, lol.getY()*32, viewFrame);
 			  }
-			  else if (spriteList.get(i).equals("BH")){
-				  BufferedImage bimgBH = new BufferedImage( imgBH.getWidth(viewFrame), imgBH.getHeight(viewFrame), BufferedImage.TYPE_INT_RGB);
-			  graphics.drawImage(imgBH, i*32, i*32, viewFrame);
+			  else if (lol.getType().equals("BH")){
+			  graphics.drawImage(imgBH, lol.getX()*32, lol.getY()*32, viewFrame);
 			  }
-			  else if(spriteList.get(i).equals("BV"))
+			  else if(lol.getType().equals("BV"))
 			  {
-				  BufferedImage bimgP = new BufferedImage( imgBV.getWidth(viewFrame), imgBV.getHeight(viewFrame), BufferedImage.TYPE_INT_RGB);
-			  graphics.drawImage(imgBV, i*32, i*32, viewFrame);
+			  graphics.drawImage(imgBV, lol.getX()*32, lol.getY()*32, viewFrame);
 			  }
-			  else if(spriteList.get(i).equals("CB"))
+			  else if(lol.getType().equals("CB"))
 			  {
-				  BufferedImage bimgCB = new BufferedImage( imgCB.getWidth(viewFrame), imgCB.getHeight(viewFrame), BufferedImage.TYPE_INT_RGB);
-			  graphics.drawImage(imgCB, i*32, i*32, viewFrame);
+			  graphics.drawImage(imgCB, lol.getX()*32, lol.getY()*32, viewFrame);
 			  }
-			  else if(spriteList.get(i).equals("M1"))
+			  else if(lol.getType().equals("M1"))
 			  {
-				  BufferedImage bimgM1 = new BufferedImage( imgM1.getWidth(viewFrame), imgM1.getHeight(viewFrame), BufferedImage.TYPE_INT_RGB);
-			  graphics.drawImage(imgM1, i*32, i*32, viewFrame);
+			  graphics.drawImage(imgM1, lol.getX()*32, lol.getY()*32, viewFrame);
 			  }
-			  else if(spriteList.get(i).equals("M2"))
+			  else if(lol.getType().equals("M2"))
 			  {
-				  BufferedImage bimgM2 = new BufferedImage( imgM2.getWidth(viewFrame), imgM2.getHeight(viewFrame), BufferedImage.TYPE_INT_RGB);
-			  graphics.drawImage(imgM2, i*32, i*32, viewFrame);
+			  graphics.drawImage(imgM2, lol.getX()*32, lol.getY()*32, viewFrame);
 			  }
-			  else if(spriteList.get(i).equals("M3"))
+			  else if(lol.getType().equals("M3"))
 			  {
-				  BufferedImage bimgM3 = new BufferedImage( imgM3.getWidth(viewFrame), imgM3.getHeight(viewFrame), BufferedImage.TYPE_INT_RGB);
-			  graphics.drawImage(imgM3, i*32, i*32, viewFrame);
+			  graphics.drawImage(imgM3, lol.getX()*32, lol.getY()*32, viewFrame);
 			  }
-			  else if(spriteList.get(i).equals("M4"))
+			  else if(lol.getType().equals("M4"))
 			  {
-				  BufferedImage bimgM4 = new BufferedImage( imgM4.getWidth(viewFrame), imgM4.getHeight(viewFrame), BufferedImage.TYPE_INT_RGB);
-			  graphics.drawImage(imgM4, i*32,i*32 , viewFrame);  
+			  graphics.drawImage(imgM4, lol.getX()*32,lol.getY()*32 , viewFrame);  
 			  }
-		  }
+			  else if(lol.getType().equals("P"))
+			  {
+			  graphics.drawImage(imgP, lol.getX()*32,lol.getY()*32 , viewFrame);  
+			  }
+			  else if(lol.getType().equals("GL"))
+			  {
+			  graphics.drawImage(imgGL, lol.getX()*32,lol.getY()*32 , viewFrame);  
+			  }
+
+		 }
+			  
+			  //	Boucle des mobiles.
+			  
+			for (SpriteLOL lol : spriteList) {
+				  if(lol.getType().equals("L"))
+				  {
+					  //	PROVISOIRE.
+				  graphics.drawImage(imgLG, lol.getX()*32,lol.getY()*32 , viewFrame);  
+				  }
+					  
+			}
+			  
+			  
+		  
 		 
 		 //ImageObserver IO = ImageObserver;
 		 
