@@ -37,7 +37,12 @@ class ViewFrame extends JFrame implements KeyListener {
 	 *           the headless exception
 	 */
 	
-	//	Paramètrer la fenêtre.
+	
+	/**
+	 * Param windows
+	 * @param model
+	 * @throws HeadlessException
+	 */
 	public ViewFrame(final IModel model) throws HeadlessException {
 		
 		this.buildViewFrame( model );

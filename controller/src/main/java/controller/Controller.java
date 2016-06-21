@@ -124,6 +124,11 @@ public class Controller implements IController {
 				break;*/
 		}
 	}
+	
+	/**
+	 * Choice of Level
+	 * @param levelId
+	 */
 	public void setLevelId(int levelId){
 		LevelId = levelId;
 	}

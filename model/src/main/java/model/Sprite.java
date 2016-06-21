@@ -16,29 +16,6 @@ public class Sprite {
 	
 	private RunningThread runner = null; 
 	private boolean running;
-	
-	
-	public Sprite( int x, int y, String typeId ,String ImageFile, Graphics graphics ) {
-		
-		X = y;
-		Y = y;
-		spriteType = typeId;
-    	
-        Toolkit toolkit = Toolkit.getDefaultToolkit();
-        imgLG = toolkit.createImage( ImageFile );
-        
-		  //bimgLG = new BufferedImage( 32, 32, BufferedImage.TYPE_INT_RGB);
-		  //graphics.drawImage( bimgLG, 0, 0, null );
-        
-		  //java.awt.Image imgM4 = toolkit.getImage("c:/sprite/bone.png");
-		  
-		  // Image is load on first use.
-		  
-		  //MediaTracker mt = new MediaTracker( graphics );
-		  
-		  
-		  //mt.addImage( imgM4, 1 );
-      }
     
 	
 	public void demarre(){

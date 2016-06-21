@@ -83,6 +83,10 @@ class ViewPanel extends JPanel implements Observer {
 	 * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
 	 */
 	@Override
+	
+	/**
+	 * Draw Sprites
+	 */
 	protected void paintComponent(final Graphics graphics) {
 		
 		System.out.println("ViewPanel.paintComponent( ) : " + graphics.toString());

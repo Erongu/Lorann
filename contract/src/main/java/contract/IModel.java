@@ -15,34 +15,19 @@ import java.util.Observable;
  */
 public interface IModel<SpriteLOL> {
 
-	/**
-	 * Gets the message.
-	 *
-	 * @return the message
-	 */
-	// String getMessage();
-
-	/**
-	 * Load the message.
-	 *
-	 * @param key
-	 *          the key
-	 */
-//	void loadMessage(String key);
 	/** 
 	 * Load the map.
 	 * @param ID_Map
 	 */
 	public void loadMap ();
-	/**
-	 * 
-	 * @return
-	 */
+
 	public ArrayList<SpriteLOL> GetSpriteList();
-	
+	/**
+	 * setIDmap
+	 * @param iDmap
+	 */
 	public void setIDmap(int iDmap);
 
-	
 	public int getIDmap();
 
 	/**
@@ -51,7 +36,13 @@ public interface IModel<SpriteLOL> {
 	 * @return the observable
 	 */
 	Observable getObservable();
-	
+
+
 	public ArrayList<SpriteLOL> GetSpriteLOLList();
+	/**
+	 * setLorannMove
+	 * @param i
+	 * @param j
+	 */
 	public void setLorannMove(int i, int j);
 }

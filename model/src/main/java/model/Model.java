@@ -30,7 +30,7 @@ public class Model extends Observable implements IModel {
 
 	
 	private int IDmap;
-	
+
 	public int getIDmap() {
 		return IDmap;
 	}
@@ -48,7 +48,8 @@ public class Model extends Observable implements IModel {
 		}
 	}
 
-	//	Move Loran in model.
+	//	Move Loran in model
+	
 	public void setLorannMove(int deltaX, int deltaY ) {
 		
 		 for (SpriteLOL lol : spriteLOLlist) {
@@ -83,6 +84,14 @@ public class Model extends Observable implements IModel {
 	}
 	
 	//	Collision 
+	/**
+	 * Collision Management
+	 * @param lorannX
+	 * @param lorannY
+	 * @param deltaX
+	 * @param deltaY
+	 * @return
+	 */
 	private Boolean lorannCollision( int lorannX, int lorannY, int deltaX, int deltaY ){
 		
 		
