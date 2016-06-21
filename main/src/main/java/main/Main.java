@@ -1,17 +1,10 @@
 package main;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
-
 import controller.Controller;
 import model.Model;
 import view.View;
 
 import java.sql.*;
-
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 /**
  * The Class Main.

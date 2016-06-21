@@ -116,12 +116,23 @@ public class Controller implements IController {
 			case Down:
 				this.model.setLorannMove( 0, 1 );
 				break;
-				
+			case UpLeft:
+				this.model.setLorannMove( -1, -1 );
+				break;
+			case UpRight:
+				this.model.setLorannMove( 1, -1 );
+				break;
+			case DownLeft:
+				this.model.setLorannMove( -1, 1 );
+				break;
+			case DownRight:
+				this.model.setLorannMove( 1, 1 );
+				break;
 			default:
 				break;
-			/*case Fireball:
-				this.model.run();
-				break;*/
+			case Fireball:
+				System.out.println("Fireballllllllll");
+				break;
 		}
 	}
 	

@@ -1,29 +1,19 @@
 package view;
 import java.awt.Color;
 
-import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.MediaTracker;
 import java.awt.Toolkit;
-import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
-import javax.swing.JComponent;
-import javax.swing.JLabel;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
-import model.Sprite;
 import model.SpriteLOL;
-import model.Model;
 
 class ViewPanel extends JPanel implements Observer {
 
@@ -94,6 +84,7 @@ class ViewPanel extends JPanel implements Observer {
 	 */
 	protected void paintComponent(final Graphics graphics ) {
 		
+		//this.viewFrame.getModel().setMonsterMove();
 		System.out.println("ViewPanel.paintComponent( ) : " + graphics.toString());
 		int idMap = this.viewFrame.getModel().getIDmap();
 		
