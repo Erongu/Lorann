@@ -28,13 +28,15 @@ public class Model extends Observable implements IModel {
 	//	SW_MOBIL..
 	public ArrayList<SpriteLOL> spriteLOLlist = new ArrayList<SpriteLOL>();
 
-	
+	private int score;
 	private int IDmap;
 
 	public int getIDmap() {
 		return IDmap;
 	}
-
+	public int getScore(){
+		return score;
+	}
 	public void setIDmap(int iDmap) {
 		Boolean change = (IDmap != iDmap); 
 		IDmap = iDmap;

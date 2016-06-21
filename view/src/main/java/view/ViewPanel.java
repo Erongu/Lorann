@@ -103,18 +103,21 @@ class ViewPanel extends JPanel implements Observer {
 	    
 	    Font fonte = new Font("TimesRoman", Font.BOLD,20);
 		graphics.setFont(fonte);
-		graphics.drawString( "Score : " + this.getViewFrame().getModel().getScore() , 10, 12*32+40) ;
+		
 		
 		ArrayList<SpriteLOL> spriteList = this.viewFrame.getModel().GetSpriteLOLList();
 		
 	    
 	    if( idMap == 0 ) 
 	    	{
-	    	if(spriteList.size() > 0 ) graphics.drawString( "Score : " + this.getViewFrame().getModel().getScore()+ " - Game Over", 10, 12*32+40) ;
-	    	
+	    	if(spriteList.size() > 0 ) 
+	    		graphics.drawString( "Score : " + this.getViewFrame().getModel().getScore()+ " - Game Over", 10, 12*32+40) ;
+	    	else {
+	    		graphics.drawString("To start : press key : 1 ,2 ,3 ,4 ,5 for loading a level", 10, 12*32+40);
+	    	}
 	    	return;
 	    	}
-	    
+	    else graphics.drawString( "Score : " + this.getViewFrame().getModel().getScore() , 10, 12*32+40) ;
 		  System.out.println( "ViewPanel.paintComponent( ) : DrawImage()" );
 		  
 		  // NW_EXEAMPLE - Display a sprite.
