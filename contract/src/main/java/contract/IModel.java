@@ -27,7 +27,9 @@ public interface IModel<SpriteLOL> {
 	 * @param iDmap
 	 */
 	public void setIDmap(int iDmap);
-
+	
+	//public static Boolean permission;
+	
 	public int getIDmap();
 
 	/**

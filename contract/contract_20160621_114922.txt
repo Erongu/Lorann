@@ -1,0 +1,8 @@
+ERROR - 11:49:22: org.xml.sax.SAXParseExceptionpublicId: /contract/src/main/java/contract/ControllerOrder.java; systemId: file:///contract/src/main/java/contract/ControllerOrder.java; lineNumber: 1; columnNumber: 1; Contenu non autorisé dans le prologue.
+ERROR - 11:49:22: org.xml.sax.SAXParseExceptionpublicId: /contract/src/main/java/contract/ControllerOrder.java; systemId: file:///contract/src/main/java/contract/ControllerOrder.java; lineNumber: 1; columnNumber: 1; Contenu non autorisé dans le prologue.
+WARNING - 11:49:57: Convert view
+ERROR - 11:49:58: org.xml.sax.SAXParseExceptionpublicId: /view/src/main/java/view/MenuSwing.java; systemId: file:///view/src/main/java/view/MenuSwing.java; lineNumber: 1; columnNumber: 1; Contenu non autorisé dans le prologue.
+ERROR - 11:49:58: org.xml.sax.SAXParseExceptionpublicId: /view/src/main/java/view/MenuSwing.java; systemId: file:///view/src/main/java/view/MenuSwing.java; lineNumber: 1; columnNumber: 1; Contenu non autorisé dans le prologue.
+WARNING - 11:50:10: Convert view
+ERROR - 11:50:10: org.xml.sax.SAXParseExceptionpublicId: /view/src/main/java/view/MenuSwing.java; systemId: file:///view/src/main/java/view/MenuSwing.java; lineNumber: 1; columnNumber: 1; Contenu non autorisé dans le prologue.
+ERROR - 11:50:10: org.xml.sax.SAXParseExceptionpublicId: /view/src/main/java/view/MenuSwing.java; systemId: file:///view/src/main/java/view/MenuSwing.java; lineNumber: 1; columnNumber: 1; Contenu non autorisé dans le prologue.

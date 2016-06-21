@@ -22,99 +22,6 @@ public class Model extends Observable implements IModel {
 
 	/** The message. */
 	private String message;
-	
-	public ArrayList<String> spritelist = new ArrayList<String>();
-	
-	//	SW_MOBIL..
-	public ArrayList<SpriteLOL> spriteLOLlist = new ArrayList<SpriteLOL>();
-
-	
-	private int IDmap;
-
-	public int getIDmap() {
-		return IDmap;
-	}
-
-	public void setIDmap(int iDmap) {
-		Boolean change = (IDmap != iDmap); 
-		IDmap = iDmap;
-		  
-		if (change == true){
-		spritelist = getSpriteList( );
-		//	NW_MOBIL.
-		spriteLOLlist = getSpriteLOLList( );
-		this.setChanged();
-		this.notifyObservers();
-		}
-	}
-
-	//	Move Loran in model
-	
-	public void setLorannMove(int deltaX, int deltaY ) {
-		
-		 for (SpriteLOL lol : spriteLOLlist) {
-			 
-			  if(lol.getType().equals( "L")) {
-				  
-				System.out.println("lolo");
-				
-				int x = lol.getX();
-				int y = lol.getY();
-				
-				
-				System.out.println( "X = " + x + ", y =" + y);
-				System.out.println( "deltatX = " + deltaX + ", deltaY =" + deltaY);
-				Boolean moveAuthorized = lorannCollision( x, y, deltaX, deltaY );
-				
-				if (moveAuthorized)
-				{
-				
-				lol.setX( x+deltaX );
-				lol.setY( y+deltaY );
-				
-				
-				this.setChanged();
-				this.notifyObservers();
-				
-				break;
-			  }
-
-			  }		  
-		 }
-	}
-	
-	//	Collision 
-	/**
-	 * Collision Management
-	 * @param lorannX
-	 * @param lorannY
-	 * @param deltaX
-	 * @param deltaY
-	 * @return
-	 */
-	private Boolean lorannCollision( int lorannX, int lorannY, int deltaX, int deltaY ){
-		
-		
-		 for (SpriteLOL lol : spriteLOLlist) {
-			 
-				
-				int x = lol.getX();
-				int y = lol.getY();
-				
-				
-				
-				if ( ( (lorannX + deltaX) == x) &&
-					 ( (lorannY + deltaY) == y) )	return false;
-
-				
-
-			  }
-		
-		return true;
-		
-	}
-	
-	
 
 	/**
 	 * Instantiates a new model.
@@ -143,87 +50,8 @@ public class Model extends Observable implements IModel {
 		this.setChanged();
 		this.notifyObservers();
 	}
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see contract.IModel#getMessage(java.lang.String)
-	 */
-	/* public void loadMessage(final String key) {
-		try {
-			final DAOHelloWorld daoHelloWorld = new DAOHelloWorld(DBConnection.getInstance().getConnection());
-			this.setMessage(daoHelloWorld.find(key).getMessage());
-		} catch (final SQLException e) {
-			e.printStackTrace();
-		}
-	}*/
-
-	public ArrayList<SpriteLOL> GetSpriteList(){
-		ArrayList<SpriteLOL> A = new ArrayList<SpriteLOL>();
-		
-		try {
-			Connection cnx = jpublankprojectDB();
-			
-		    Statement stmt = null;
-		    String query = "select ID_Object, ID_Map, ID_Type, " +
-		                   "AXIS_X, AXIS_Y " +
-		                   "from map WHERE ID_Map =" + Integer.toString(IDmap);
-	        stmt = cnx.createStatement();
-	        ResultSet rs = stmt.executeQuery(query);
-
-	        while (rs.next()) {
-	        	
-	            A.add(new SpriteLOL(rs.getString("ID_Type").trim(),rs.getInt("AXIS_X"),rs.getInt("AXIS_Y")));
-
-	        }
-		}
-	        catch (final SQLException e) {
-				e.printStackTrace();
-			}
-		return A;
-		}
-
-	//	NW_MOBIL.
-	public ArrayList<SpriteLOL> GetSpriteLOLList(){
-		
-		System.out.println("Model.GetSpriteLOLList(arg0)");
-		
-		ArrayList<SpriteLOL> A = spriteLOLlist;
-		return A;
-		}
-
-	public void loadMap () { 
-		int ID_Map = this.getIDmap();
-		spritelist = new ArrayList<String>();
-		try {
-			Connection cnx = jpublankprojectDB();
-			
-		    Statement stmt = null;
-		    String query = "select ID_Object, ID_Map, ID_Type, " +
-		                   "AXIS_X, AXIS_Y " +
-		                   "from map WHERE ID_Map =" + Integer.toString(ID_Map);
-	        stmt = cnx.createStatement();
-	        ResultSet rs = stmt.executeQuery(query);
-
-	        int i = 0;
-
-	        while (rs.next()) {
-	            String typeId = rs.getString("ID_Type");
-	            spritelist.add(typeId);
-	        }
-	        
-
-			;
-		} catch (final SQLException e) {
-			e.printStackTrace();
-		}
-		return;
-	}
-	
-	
-	
-	/*
-	 * (non-Javadoc)
+	/**
+	 * Observable : use for see a statement 
 	 *
 	 * @see contract.IModel#getObservable()
 	 */
@@ -231,98 +59,43 @@ public class Model extends Observable implements IModel {
 		return this;
 	}
 	
-	public  Connection jpublankprojectDB(){
+
+	}
+	@Override
+	public void loadMap() {
+		// TODO Auto-generated method stub
 		
-		try{
-			Class.forName( "com.mysql.jdbc.Driver" );
-			
-			System.out.println("MenuSwing.jpublankprojectDB() : Driver created.");
-			
-			String url = "jdbc:mysql://localhost:3306/jpublankproject";
-			String user = "root";
-			String pass = "";
-			
-			Connection jpublankprojectConnection = DriverManager.getConnection( url, user, pass );
-			
-			System.out.println("MenuSwing.jpublankprojectDB() : Connection created.");
-			
-			return jpublankprojectConnection;
-			
-		}catch( Exception E){
-			E.printStackTrace();
-			//return null;
-		}
+	}
+
+	@Override
+	public ArrayList GetSpriteList() {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
-	private ArrayList<String> getSpriteList() {
-		  
-		  ArrayList<String> A = new ArrayList<String>();
-		  ArrayList<Integer> X = new ArrayList<Integer>();
-		  ArrayList<Integer> Y = new ArrayList<Integer>();
-
-		  try {
-		   Connection cnx = jpublankprojectDB();
-
-		   Statement stmt = null;
-		   String query = "select ID_Object, ID_Map, ID_Type, AXIS_X, AXIS_Y " + 
-		         "from map WHERE ID_Map = " + Integer.toString( IDmap );
-		   stmt = cnx.createStatement();
-		   ResultSet rs = stmt.executeQuery(query);
-
-		   while (rs.next()) {
-
-		    A.add(rs.getString("ID_Type").trim());
-		    X.add(rs.getInt("AXIS_X"));
-		    Y.add(rs.getInt("AXIS_Y"));
-
-		   }
-		  } catch (final SQLException e) {
-		   e.printStackTrace();
-		  }
-		  System.out.println("Model.getSpriteList() : IDmap = " + IDmap + ", Nb Sprites = " + A.size());
-		  
-		  spritelist = A;
-		  //spritelistX = X;
-		  //spritelistY = Y;
-		  
-		  // Indicate that the object has changed to all Observers.
-		  //this.setChanged();
-		  //this.notifyObservers();
-		  
-		  //System.out.println( "Model.GetSpriteList() : Nb d'observateurs = " + this.countObservers() );
-		  
-		  return A;
-		 }
-
-	//	NW_MOBIL.
-	private ArrayList<SpriteLOL> getSpriteLOLList() {
-		  
-		ArrayList<SpriteLOL> A = new ArrayList<SpriteLOL>();
+	@Override
+	public void setIDmap(int iDmap) {
+		// TODO Auto-generated method stub
 		
-		try {
-			Connection cnx = jpublankprojectDB();
-			
-		    Statement stmt = null;
-		    String query = "select ID_Object, ID_Map, ID_Type, " +
-		                   "AXIS_X, AXIS_Y " +
-		                   "from map WHERE ID_Map =" + Integer.toString(IDmap);
-	        stmt = cnx.createStatement();
-	        ResultSet rs = stmt.executeQuery(query);
+	}
 
-	        while (rs.next()) {
-	        	
-	            A.add(new SpriteLOL(rs.getString("ID_Type").trim(),rs.getInt("AXIS_X"),rs.getInt("AXIS_Y")));
+	@Override
+	public int getIDmap() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
-	        }
-		}
-	        catch (final SQLException e) {
-				e.printStackTrace();
-			}
-		return A;
+	@Override
+	public ArrayList GetSpriteLOLList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setLorannMove(int i, int j) {
+		// TODO Auto-generated method stub
 		
-
-		 }
+	}
 
 }
 

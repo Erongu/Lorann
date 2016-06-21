@@ -119,6 +119,7 @@ public class Controller implements IController {
 				
 			default:
 				break;
+				
 			/*case Fireball:
 				this.model.run();
 				break;*/
