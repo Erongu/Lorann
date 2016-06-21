@@ -19,8 +19,6 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
-import model.Model;
-import model.Move;
 import model.Sprite;
 import model.SpriteLOL;
 
@@ -187,6 +185,10 @@ class ViewPanel extends JPanel implements Observer {
 			  {
 			  graphics.drawImage(imgM4, lol.getX()*32,lol.getY()*32 , viewFrame);  
 			  }
+			  else if(lol.getType().equals("P"))
+			  {
+			  graphics.drawImage(imgP, lol.getX()*32,lol.getY()*32 , viewFrame);  
+			  }
 			  else if(lol.getType().equals("GL"))
 			  {
 			  graphics.drawImage(imgGL, lol.getX()*32,lol.getY()*32 , viewFrame);  
@@ -194,23 +196,16 @@ class ViewPanel extends JPanel implements Observer {
 
 		 }
 			  
-			  //	While for mobile sprite
-		
-	
-		
-  if( Move.permission == true)
+			  //	Boucle des mobiles.
+			  
 			for (SpriteLOL lol : spriteList) {
 				  if(lol.getType().equals("L"))
 				  {
 					  //	PROVISOIRE.
 				  graphics.drawImage(imgLG, lol.getX()*32,lol.getY()*32 , viewFrame);  
 				  }
-				  else if(lol.getType().equals("P"))
-				  {
-				  graphics.drawImage(imgP, lol.getX()*32,lol.getY()*32 , viewFrame);  
-				  } }
-		 }
-}
+					  
+			}
 			  
 			  
 		  
@@ -219,4 +214,6 @@ class ViewPanel extends JPanel implements Observer {
 		 
 		  //BufferedImage bimgLG = new BufferedImage( 32, 32, BufferedImage.TYPE_INT_RGB);
 		  //graphics.drawImage( imgB, 0, 0, viewFrame);
+	}
+}
 }

@@ -1,2 +1,0 @@
-ERROR - 11:50:10: org.xml.sax.SAXParseExceptionpublicId: /view/src/main/java/view/MenuSwing.java; systemId: file:///view/src/main/java/view/MenuSwing.java; lineNumber: 1; columnNumber: 1; Contenu non autorisé dans le prologue.
-ERROR - 11:50:10: org.xml.sax.SAXParseExceptionpublicId: /view/src/main/java/view/MenuSwing.java; systemId: file:///view/src/main/java/view/MenuSwing.java; lineNumber: 1; columnNumber: 1; Contenu non autorisé dans le prologue.

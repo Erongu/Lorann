@@ -1,19 +1,9 @@
 package model;
-/**
- * 
- * @author Noëline
- *
- */
+
 public class SpriteLOL {	
     String Type;
     int X;
     int Y;
-    /**
-     * 
-     * @param type
-     * @param x
-     * @param y
-     */
     public SpriteLOL(String type, int x, int y)
     {
         Type=type;
