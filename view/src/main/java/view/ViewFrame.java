@@ -47,7 +47,7 @@ class ViewFrame extends JFrame implements KeyListener {
 		
 		this.buildViewFrame( model );
 		
-		setSize(20*32+10,12*32+40);
+		setSize(20*32+10,12*32+80);
 		
 		//	NW_MODIF : Background color of the main windows.
 		setBackground( Color.BLACK );
