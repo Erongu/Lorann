@@ -47,75 +47,102 @@ public class Model extends Observable implements IModel {
 		this.notifyObservers();
 		}
 	}
-
-	//	Move Loran in model
-	
+/**
+ * @param deltaX 
+ * @param deltaY
+ */
 	public void setLorannMove(int deltaX, int deltaY ) {
 		
 		 for (SpriteLOL lol : spriteLOLlist) {
 			 
-			  if(lol.getType().equals( "L")) {
+			  if ( lol.getType().equals( "L")) {	//	Wee find Lorann.
 				  
-				System.out.println("lolo");
+				System.out.println("Model.setLorannMove() - Lorann found.");
 				
 				int x = lol.getX();
 				int y = lol.getY();
 				
+				//	Find the sprite in the destination position.
+				SpriteLOL spriteInCase = getSpriteByPosition( x + deltaX, y + deltaY );
 				
-				System.out.println( "X = " + x + ", y =" + y);
-				System.out.println( "deltatX = " + deltaX + ", deltaY =" + deltaY);
-				Boolean moveAuthorized = lorannCollision( x, y, deltaX, deltaY );
-				
-				if (moveAuthorized)
-				{
-				
-				lol.setX( x+deltaX );
-				lol.setY( y+deltaY );
-				
-				
-				this.setChanged();
-				this.notifyObservers();
-				
-				break;
-			  }
+				if (spriteInCase == null)		//	Destination is free.
+					{
+					lol.setX( x+deltaX );
+					lol.setY( y+deltaY );
+					
+					this.setChanged();
+					this.notifyObservers();
+  				    }
+				else{
+					//	Destination is not free.
+					if ( spriteInCase.Type.equals("P") )	//	Lorann meet a Purse. 
+						{
+						//	Put the sprite out of the windows drawing zone.
+						spriteInCase.X = 1000;
+						spriteInCase.Y = 1000;
 
-			  }		  
+						lol.setX( x+deltaX );
+						lol.setY( y+deltaY );
+						
+						score += 1000;
+						
+						this.setChanged();
+						this.notifyObservers();
+					}
+					
+					else if ( spriteInCase.Type.equals("CB") )	//	Lorann meet a Crystal_Ball. 
+					{
+					//	Put the sprite out of the windows drawing zone.
+					spriteInCase.X = 1000;
+					spriteInCase.Y = 1000;
+
+					lol.setX( x+deltaX );
+					lol.setY( y+deltaY );
+					
+					//method research gate_closed 
+					SpriteLOL gateLocked = getSpriteByType("GL");
+					
+					gateLocked.Type = "GU";
+					
+					
+					this.setChanged();
+					this.notifyObservers();
+					
+				}
+					else if(spriteInCase.Type.equals("GU"))
+					{
+						System.out.println("map 0 ");
+					IDmap = 0;
+					
+					this.setChanged();
+					this.notifyObservers();
+					}
+				}	
+				break;
+			 }		  
 		 }
 	}
+	private SpriteLOL getSpriteByPosition( int X, int Y ){
 	
-	//	Collision 
-	/**
-	 * Collision Management
-	 * @param lorannX
-	 * @param lorannY
-	 * @param deltaX
-	 * @param deltaY
-	 * @return
-	 */
-	private Boolean lorannCollision( int lorannX, int lorannY, int deltaX, int deltaY ){
-		
-		
-		 for (SpriteLOL lol : spriteLOLlist) {
-			 
-				
-				int x = lol.getX();
-				int y = lol.getY();
-				
-				
-				
-				if ( ( (lorannX + deltaX) == x) &&
-					 ( (lorannY + deltaY) == y) )	return false;
-
-				
-
-			  }
-		
-		return true;
-		
+		for (SpriteLOL lol : spriteLOLlist) {	
+			int x = lol.getX();
+			int y = lol.getY();
+			if ( (X == x) && (Y == y) )	return lol;
+			}
+		return null;
 	}
 	
 	
-
+	private SpriteLOL getSpriteByType(String Type){
+		
+		for (SpriteLOL lol : spriteLOLlist) {	
+			
+			if ( lol.Type.equals(Type) )
+				return lol;
+			}
+		return null;
+	}
+	
 	/**
 	 * Instantiates a new model.
 	 */
@@ -186,7 +213,8 @@ public class Model extends Observable implements IModel {
 	//	NW_MOBIL.
 	public ArrayList<SpriteLOL> GetSpriteLOLList(){
 		
-		System.out.println("Model.GetSpriteLOLList(arg0)");
+		//	SW_MODIF
+		//System.out.println("Model.GetSpriteLOLList()");
 		
 		ArrayList<SpriteLOL> A = spriteLOLlist;
 		return A;
@@ -325,4 +353,7 @@ public class Model extends Observable implements IModel {
 		 }
 
 }
+
+
+
 

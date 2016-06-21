@@ -27,7 +27,9 @@ public interface IModel<SpriteLOL> {
 	 * @param iDmap
 	 */
 	public void setIDmap(int iDmap);
-
+	
+	//public static Boolean permission;
+	
 	public int getIDmap();
 
 	/**
@@ -36,8 +38,8 @@ public interface IModel<SpriteLOL> {
 	 * @return the observable
 	 */
 	Observable getObservable();
-
-
+	public int getScore();
+	
 	public ArrayList<SpriteLOL> GetSpriteLOLList();
 	/**
 	 * setLorannMove
