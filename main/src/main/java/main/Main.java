@@ -12,12 +12,12 @@ import java.sql.*;
  */
 public abstract class Main {
 
-	/**
-	 * The main method.
-	 *
-	 * @param args
-	 *          the arguments
-	 */
+/**
+* The main method.
+*
+* @param args
+*          the arguments
+*/
 	public static void main(final String[] args) {
 		
 		System.out.println( "main()." );
@@ -30,7 +30,7 @@ public abstract class Main {
 		controller.control( );
 
 		}
-	
+
 	public static Connection jpublankprojectDB(){
 		
 		try{

@@ -1,81 +1,70 @@
 package controller;
 
-import java.util.ArrayList;
-
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-
 import contract.ControllerOrder;
 import contract.IController;
 import contract.IModel;
 import contract.IView;
 
-// TODO: Auto-generated Javadoc
 
 public class Controller implements IController {
 
-	/** The view. */
+/** The view. */
 	private IView	view;
 
-	/** The model. */
+/** The model. */
 	private IModel	model;
 	
-	/** Current Level */
+/** Current Level */
+	
+private int LevelId;
 
-	private int LevelId;
-	/**
-	 * Instantiates a new controller.
-	 *
-	 * @param view
-	 *          the view
-	 * @param model
-	 *          the model
-	 */
+/**
+* Instantiates a new controller.
+*
+* @param view
+*          the view
+* @param model
+*          the model
+*/
 	public Controller(final IView view, final IModel model) {
 		this.setView(view);
 		this.setModel(model);
 	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see contract.IController#control()
-	 */
+/**
+* 
+* @see contract.IController#control()
+*/
 	public void control() {
 		
-		//this.view.printMessage("Appuyer sur les touches 'E', 'F', 'D' ou 'I', pour afficher Hello world dans la langue d votre choix.");
-		
 		System.out.println("Controller.control()" );
-		
-	
 	}
 
-	/**
-	 * Sets the view.
-	 *
-	 * @param view
-	 *          the new view
-	 */
+/**
+* Sets the view.
+*
+* @param view
+*          the new view
+*/
 	private void setView(final IView view) {
 		this.view = view;
 	}
 
-	/**
-	 * Sets the model.
-	 *
-	 * @param model
-	 *          the new model
-	 */
+/**
+* Sets the model.
+*
+* @param model
+*          the new model
+*/
 	private void setModel(final IModel model) {
 		this.model = model;
 	}
 /**
-	 * link : keyboard && loading map
-	 * @see setIDmap, loadMap
-	 * @param controllerOrder
-	 * 
-	 * @see contract.IController#orderPerform(contract.ControllerOrder)
-	 */
+* link : keyboard && loading map
+* @see setIDmap, loadMap
+* @param controllerOrder
+* 
+* @see contract.IController#orderPerform(contract.ControllerOrder)
+*/
 	public void orderPerform(final ControllerOrder controllerOrder) {
 		switch (controllerOrder) {
 			case Level1:
@@ -135,11 +124,10 @@ public class Controller implements IController {
 				break;
 		}
 	}
-	
-	/**
-	 * Choice of Level
-	 * @param levelId
-	 */
+/**
+* Choice of Level
+* @param levelId
+*/
 	public void setLevelId(int levelId){
 		LevelId = levelId;
 	}

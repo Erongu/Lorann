@@ -1,4 +1,3 @@
-
 package model;
 
 import java.sql.Connection;
@@ -22,14 +21,14 @@ public class Model extends Observable implements IModel{
 /**
  * 1. Initialization 
  */
-	/** The message. */
+	/** The message */
 	private String message;
 	
-	public ArrayList<String> spritelist = new ArrayList<String>();
 	
 	public ArrayList<SpriteLOL> spriteLOLlist = new ArrayList<SpriteLOL>();
 
 	private int score;
+	
 	private int IDmap;
 
 	public int getIDmap() {
@@ -47,8 +46,7 @@ public class Model extends Observable implements IModel{
 		IDmap = iDmap;
 		  
 		if (change == true){
-		spritelist = getSpriteList( );
-		//	NW_MOBIL.
+		
 		spriteLOLlist = getSpriteLOLList( );
 		score = 0;
 		this.setChanged();
@@ -61,7 +59,6 @@ public class Model extends Observable implements IModel{
 	public Model() {
 		this.message = "";
 	}
-
 /**
 * getter : Write a message
 *
@@ -71,7 +68,7 @@ public class Model extends Observable implements IModel{
 		return this.message;
 	}
 /**
-* Sets the message.
+* Set the message.
 *
 * @param message
 *          the new message
@@ -82,47 +79,11 @@ public class Model extends Observable implements IModel{
 		this.notifyObservers();
 	}
 
-	public ArrayList<SpriteLOL> GetSpriteList(){
-		ArrayList<SpriteLOL> A = new ArrayList<SpriteLOL>();
-		
-		try {
-			Connection cnx = jpublankprojectDB();
-			
-		    Statement stmt = null;
-		    String query = "select ID_Object, ID_Map, ID_Type, " +
-		                   "AXIS_X, AXIS_Y " +
-		                   "from map WHERE ID_Map =" + Integer.toString(IDmap);
-	        stmt = cnx.createStatement();
-	        ResultSet rs = stmt.executeQuery(query);
-
-	        while (rs.next()) {
-	        	
-	            A.add(new SpriteLOL(rs.getString("ID_Type").trim(),rs.getInt("AXIS_X"),rs.getInt("AXIS_Y")));
-
-	        }
-		}
-	        catch (final SQLException e) {
-				e.printStackTrace();
-			}
-		return A;
-		}
-
-	public ArrayList<SpriteLOL> GetSpriteLOLList(){
-		
-		
-		ArrayList<SpriteLOL> A = spriteLOLlist;
-		return A;
-		}
-
-	/**
-	 * 2. Display Map
-	 *
-	 * @see contract.IModel#getObservable()
-	 */
-	public Observable getObservable() {
-		return this;
-	}
-
+/**
+* 
+*
+* @see contract.IModel#getObservable()
+*/
 	public  Connection jpublankprojectDB(){
 		
 		try{
@@ -147,51 +108,46 @@ public class Model extends Observable implements IModel{
 		return null;
 	}
 /**
+ * 2. Display Map
  * 
- * @return A
- */
-	private ArrayList<String> getSpriteList() {
-		  
-		  ArrayList<String> A = new ArrayList<String>();
-		  ArrayList<Integer> X = new ArrayList<Integer>();
-		  ArrayList<Integer> Y = new ArrayList<Integer>();
+* Get the Level Collection Sprite 
+*/
+	
+public ArrayList<SpriteLOL> GetSpriteLOLList(){
+		
+		ArrayList<SpriteLOL> A = spriteLOLlist;
+		return A;
+		}
+	
+	public Observable getObservable() {
+		return this;
+	}
+		public ArrayList<SpriteLOL> GetSpriteList(){
+			ArrayList<SpriteLOL> A = new ArrayList<SpriteLOL>();
+			
+			try {
+				Connection cnx = jpublankprojectDB();
+				
+			    Statement stmt = null;
+			    String query = "select ID_Object, ID_Map, ID_Type, " +
+			                   "AXIS_X, AXIS_Y " +
+			                   "from map WHERE ID_Map =" + Integer.toString(IDmap);
+		        stmt = cnx.createStatement();
+		        ResultSet rs = stmt.executeQuery(query);
 
-		  try {
-		   Connection cnx = jpublankprojectDB();
+		        while (rs.next()) {
+		        	
+		            A.add(new SpriteLOL(rs.getString("ID_Type").trim(),rs.getInt("AXIS_X"),rs.getInt("AXIS_Y")));
 
-		   Statement stmt = null;
-		   String query = "select ID_Object, ID_Map, ID_Type, AXIS_X, AXIS_Y " + 
-		         "from map WHERE ID_Map = " + Integer.toString( IDmap );
-		   stmt = cnx.createStatement();
-		   ResultSet rs = stmt.executeQuery(query);
-
-		   while (rs.next()) {
-
-		    A.add(rs.getString("ID_Type").trim());
-		    X.add(rs.getInt("AXIS_X"));
-		    Y.add(rs.getInt("AXIS_Y"));
-
-		   }
-		  } catch (final SQLException e) {
-		   e.printStackTrace();
-		  }
-		  System.out.println("Model.getSpriteList() : IDmap = " + IDmap + ", Nb Sprites = " + A.size());
-		  
-		  spritelist = A;
-		  //spritelistX = X;
-		  //spritelistY = Y;
-		  
-		  // Indicate that the object has changed to all Observers.
-		  //this.setChanged();
-		  //this.notifyObservers();
-		  
-		  //System.out.println( "Model.GetSpriteList() : Nb d'observateurs = " + this.countObservers() );
-		  
-		  return A;
-		 }
-
+		        }
+			}
+		        catch (final SQLException e) {
+					e.printStackTrace();
+				}
+			return A;
+			}
 /**
- * 
+ * Private method : Get the Level Collection Sprite
  * @return A
  */
 	private ArrayList<SpriteLOL> getSpriteLOLList() {
@@ -218,13 +174,9 @@ public class Model extends Observable implements IModel{
 				e.printStackTrace();
 			}
 		return A;
-		 
-	
-	
 	}
 /**
  * 3. Movement Sprite
- * 
  * 
  * Movement Lorann + changment Purse + Changment Gate
  * @param deltaX 

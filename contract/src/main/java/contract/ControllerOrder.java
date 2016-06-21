@@ -2,7 +2,6 @@ package contract;
 
 /**
  * The Enum ControllerOrder.
- *
  * 
  */
 public enum ControllerOrder {
@@ -14,7 +13,7 @@ public enum ControllerOrder {
 	Level5, // Level 5
 	
 	Fireball,// Fireball
-	//	MW_MOBIL.
+	
 	Left, 
 	Right,
 	Up,
@@ -23,10 +22,6 @@ public enum ControllerOrder {
 	UpRight,
 	DownLeft,
 	DownRight,
-	SpaceBar,
-	
-	
-	
-	
+
 	Default // Default
 }
