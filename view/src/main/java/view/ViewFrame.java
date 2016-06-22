@@ -24,9 +24,9 @@ class ViewFrame extends JFrame implements KeyListener {
 	private static final long	serialVersionUID	= -697358409737458175L;
 	
 /**
-* Param windows
-* @param model
-* @throws HeadlessException
+*  windows
+*  @param model   model 
+*  @throws HeadlessException    headlessexception 
 */
 	
 	public ViewFrame(final IModel model) throws HeadlessException {
@@ -51,10 +51,11 @@ class ViewFrame extends JFrame implements KeyListener {
 /**
 * Instantiates a new view frame.
 *
-* @param model
+*  @param model
 *          the model
-* @param gc
-*          the gc
+*  @param gc 
+*  			gc
+*          
 */
 	public ViewFrame(final IModel model, final GraphicsConfiguration gc) {
 		super(gc);
@@ -92,26 +93,24 @@ class ViewFrame extends JFrame implements KeyListener {
 /**
 * Gets the controller.
 *
-* @return the controller
+* @return controller   the new controller 
 */
 	private IController getController() {
 		return this.controller;
 	}
-	
 /**
-* Sets the controller.
+* Sets the new controller
 *
-* @param controller
-*          the new controller
+* @param controller the new controller
+*          
 */
 	protected void setController(final IController controller) {
 		this.controller = controller;
-	}
-
+}
 /**
 * Gets the model.
 *
-* @return the model
+* @return the model  the model
 */
 	protected IModel getModel() {
 		return this.model;
@@ -161,26 +160,24 @@ class ViewFrame extends JFrame implements KeyListener {
 	}
 
 /**
-* 
-*
-* @see java.awt.event.KeyListener#keyTyped(java.awt.event.KeyEvent)
-*/
+ * KeyTyped
+ * 
+ * @param e keyevent 
+ */
 	public void keyTyped(final KeyEvent e) {
 
 	}
 /**
-* 
-*
-* @see java.awt.event.KeyListener#keyPressed(java.awt.event.KeyEvent)
-*/
+ * @param e keyevent
+ */
 	public void keyPressed(final KeyEvent e) {
 		
 		this.getController().orderPerform(View.keyCodeToControllerOrder(e.getKeyCode()));	
 	}
 /**
-* 
+* KeyReleased
 *
-* @see java.awt.event.KeyListener#keyReleased(java.awt.event.KeyEvent)
+* @param e keyevent e 
 */
 	public void keyReleased(final KeyEvent e) {
 	}

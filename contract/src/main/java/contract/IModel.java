@@ -5,7 +5,7 @@ import java.util.Observable;
 
 /**
  * The Interface IModel.
- * @param <SpriteLOL>
+ * @param <SpriteLOL> spritelol
  *
  *
  */
@@ -13,16 +13,19 @@ public interface IModel<SpriteLOL> {
 
 /** 
 * Load the map.
-* @param ID_Map
+* @param iD_Map idmap
 */
-
+/**
+ * 
+ * @return collection of the sprite
+ */
 	public ArrayList<SpriteLOL> GetSpriteList();
 /**
 * setIDmap
-* @param iDmap
+* @param iDmap  idmap
 */
 	public void setIDmap(int iDmap);
-/**
+/*
  * Initialize IDMap		
  * 
  */
@@ -34,18 +37,18 @@ public interface IModel<SpriteLOL> {
 * @return the observable
 */
 	Observable getObservable();
-/**
+/*
  * Initialize Score
- * @return
+ * 
  */
 	public int getScore();
 	
 	public ArrayList<SpriteLOL> GetSpriteLOLList();
 /**
 * setLorannMove
-* @param i
-* @param j
- */
+* @param i  X
+* @param j  Y
+*/
 	public void setLorannMove(int i, int j);
 	
 	public void FireballManager();

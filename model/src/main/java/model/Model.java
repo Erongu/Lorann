@@ -10,7 +10,7 @@ import java.util.Observable;
 
 import contract.IModel;
 
-/**
+/*
  * Composed by : 1. Initialization 
  * 				 2. Display Map 
  * 				 3. Movement Sprite
@@ -18,10 +18,10 @@ import contract.IModel;
  *
  */
 public class Model extends Observable implements IModel{
-/**
+/*
  * 1. Initialization 
  */
-	/** The message */
+	/* The message */
 	private String message;
 	
 	
@@ -45,7 +45,7 @@ public class Model extends Observable implements IModel{
 	}
 /**
  * Setter IDmap
- * @param iDmap
+ * @param iDmap   idmap
  */
 	public void setIDmap(int iDmap) {
 		Boolean change = (IDmap != iDmap); 
@@ -68,7 +68,7 @@ public class Model extends Observable implements IModel{
 /**
 * getter : Write a message
 *
-* @see contract.IModel#getMessage()
+* @return message message
 */
 	public String getMessage() {
 		return this.message;
@@ -84,11 +84,9 @@ public class Model extends Observable implements IModel{
 		this.setChanged();
 		this.notifyObservers();
 	}
-
 /**
-* 
-*
-* @see contract.IModel#getObservable()
+ * Connexion DB
+ * @return jpublankprojectConnection connexion
 */
 	public  Connection jpublankprojectDB(){
 		
@@ -154,7 +152,7 @@ public ArrayList<SpriteLOL> GetSpriteLOLList(){
 			}
 /**
  * Private method : Get the Level Collection Sprite
- * @return A
+ * @return A  a
  */
 	private ArrayList<SpriteLOL> getSpriteLOLList() {
 		  
@@ -185,8 +183,9 @@ public ArrayList<SpriteLOL> GetSpriteLOLList(){
  * 3. Movement Sprite
  * 
  * Movement Lorann + changment Purse + Changment Gate
- * @param deltaX 
- * @param deltaY
+ * 
+ * @param deltaX    delta x 
+ * @param deltaY    delta y 
  */
 	public void setLorannMove(int deltaX, int deltaY ) {
 			 
@@ -266,9 +265,9 @@ public ArrayList<SpriteLOL> GetSpriteLOLList(){
 		 }
 /**
  * Search and return sprite to Position
- * @param X
- * @param Y
- * @return
+ * @param X   x 
+ * @param Y   y 
+ * @return sprite ll
  */
 	private SpriteLOL getSpriteByPosition( int X, int Y ){
 	
@@ -283,8 +282,8 @@ public ArrayList<SpriteLOL> GetSpriteLOLList(){
 	}
 	/**
 	 * Search by Sprite Type
-	 * @param Type
-	 * 
+	 * @param Type  type 
+	 * @return sprite sprite 
 	 */
 	private SpriteLOL getSpriteByType(String Type){
 		
@@ -297,6 +296,7 @@ public ArrayList<SpriteLOL> GetSpriteLOLList(){
 	}
 /**
 * Fireball Movement
+* 
 * 
 */
 	public void FireballManager( )

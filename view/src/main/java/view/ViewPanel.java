@@ -70,7 +70,7 @@ class ViewPanel extends JPanel implements Observer {
 		}
 /**
 * Draw Sprite
-* @param Graphics
+* @param graphics  g
 */
 	protected void paintComponent(final Graphics graphics ) {
 		

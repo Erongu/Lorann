@@ -8,13 +8,13 @@ import contract.IView;
 
 public class Controller implements IController {
 
-/** The view. */
+/* The view. */
 	private IView	view;
 
-/** The model. */
+/* The model. */
 	private IModel	model;
 	
-/** Current Level */
+/* Current Level */
 	
 private int LevelId;
 
@@ -59,11 +59,9 @@ private int LevelId;
 		this.model = model;
 	}
 /**
-* link : keyboard && loading map
-* @see setIDmap, loadMap
-* @param controllerOrder
+* link : keyboard , loading map
 * 
-* @see contract.IController#orderPerform(contract.ControllerOrder)
+* @param controllerOrder  control button
 */
 	public void orderPerform(final ControllerOrder controllerOrder) {
 		switch (controllerOrder) {
@@ -124,7 +122,8 @@ private int LevelId;
 	}
 /**
 * Choice of Level
-* @param levelId
+* 
+* @param levelId   level select
 */
 	public void setLevelId(int levelId){
 		LevelId = levelId;
