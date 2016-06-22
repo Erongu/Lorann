@@ -1,26 +1,16 @@
 package view;
 
 import java.awt.event.KeyEvent;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import contract.ControllerOrder;
 import contract.IController;
 import contract.IModel;
 import contract.IView;
-import javafx.scene.paint.Color;
 
 public class View implements IView, Runnable {
 
-	/** The frame. */
+	// The frame
 	private final ViewFrame viewFrame;
 
 	 /* Instantiates a new view.
@@ -37,14 +27,14 @@ public class View implements IView, Runnable {
 		SwingUtilities.invokeLater(this);	
 	}
 	
-	/**
-	 * Key code to controller order.
-	 *
-	 * @param keyCode
-	 *          the key code
-	 * @return the controller order
-	 */
-	
+/**
+* Key code to controller order.
+*
+* @param keyCode
+*          the key code
+* @return the controller order
+*/
+
 	protected static ControllerOrder keyCodeToControllerOrder(final int keyCode) {
 		System.out.println("Clavier = "+ Integer.toString(keyCode));
 		switch (keyCode) {
@@ -85,32 +75,27 @@ public class View implements IView, Runnable {
 				return ControllerOrder.Default;
 		}		
 	}
-	/*
-	 * (non-Javadoc)
+	/**
 	 *
 	 * @see contract.IView#printMessage(java.lang.String)
 	 */
 	public void printMessage(final String message) {
 		this.viewFrame.getModel().setIDmap(Integer.parseInt( message ));
 	}
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see java.lang.Runnable#run()
-	 */
+/** 
+*Running the Frame
+* @see java.lang.Runnable#run()
+*/
 	public void run() {
 		this.viewFrame.setVisible(true);
 	}
-	/**
-	 * Sets the controller.
-	 *
-	 * @param controller
-	 *          the new controller
-	 */
+/**
+* Sets the controller.
+*
+* @param controller
+*          the new controller
+*/
 	public void setController(final IController controller) {
 		this.viewFrame.setController(controller);
 	}
-	
-
-
 }

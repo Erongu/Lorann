@@ -17,18 +17,18 @@ import model.SpriteLOL;
 
 class ViewPanel extends JPanel implements Observer {
 
-	/** The view frame. */
+/** The view frame. */
 	private ViewFrame	viewFrame;
-	/** The Constant serialVersionUID. */
+/** The Constant serialVersionUID. */
 	private static final long	serialVersionUID	= -998294702363713521L;
 	private static final ImageObserver ImageObserver = null;
 
-	/**
-	 * Instantiates a new view panel.
-	 *
-	 * @param viewFrame
-	 *          the view frame
-	 */
+/**
+* Instantiates a new view panel.
+*
+* @param viewFrame
+*          the view frame
+*/
 	public ViewPanel(final ViewFrame viewFrame) {
 
 		System.out.println("ViewPanel() : " + viewFrame.toString() );
@@ -39,49 +39,39 @@ class ViewPanel extends JPanel implements Observer {
 		viewFrame.getModel().getObservable().addObserver(this);
 	}
 	
-	/**
-	 * Gets the view frame.
-	 *
-	 * @return the view frame
-	 */
+/**
+* Gets the view frame.
+*
+* @return the view frame
+*/
 	private ViewFrame getViewFrame() {
 		return this.viewFrame;
 	}
-
-	/**
-	 * Sets the view frame.
-	 *b 
-	 * @param viewFrame
-	 *          the new view frame
-	 */
+/**
+* Sets the view frame.
+* 
+* @param viewFrame
+*          the new view frame
+*/
 	private void setViewFrame(final ViewFrame viewFrame) {
 		this.viewFrame = viewFrame;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
-	 */
+/**
+* 
+*
+* @see java.util.Observer#update(java.util.Observable, java.lang.Object)
+*/
 	public void update(final Observable arg0, final Object arg1) {
 		
 		System.out.println("ViewPanel.update()");
 		
 		this.repaint();
 		}
-
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
-	 */
-	@Override
-	
-	/**
-	 * Draw Sprite
-	 * @param Graphics
-	 */
+/**
+* Draw Sprite
+* @param Graphics
+*/
 	protected void paintComponent(final Graphics graphics ) {
 		
 		//this.viewFrame.getModel().setMonsterMove();
@@ -93,12 +83,10 @@ class ViewPanel extends JPanel implements Observer {
 	    graphics.setColor(Color.white);
 	    
 	    Font fonte = new Font("TimesRoman", Font.BOLD,20);
-		graphics.setFont(fonte);
-		
+		graphics.setFont(fonte);	
 		
 		ArrayList<SpriteLOL> spriteList = this.viewFrame.getModel().GetSpriteLOLList();
-		
-	    
+	
 	    if( idMap == 0 ) 
 	    	{
 	    	if(spriteList.size() > 0 ) 
@@ -129,6 +117,11 @@ class ViewPanel extends JPanel implements Observer {
 		  java.awt.Image imgM4 = tk.getImage("C:/sprite/monster_4.png");
 		  java.awt.Image imgGL = tk.getImage("C:/sprite/gate_closed.png");
 		  java.awt.Image imgGU = tk.getImage("c:/sprite/gate_open.png");
+		  java.awt.Image imgFB1 = tk.getImage("c:/sprite/fireball_1.png");
+		  java.awt.Image imgFB2 = tk.getImage("c:/sprite/fireball_2.png");
+		  java.awt.Image imgFB3 = tk.getImage("c:/sprite/fireball_3.png");
+		  java.awt.Image imgFB4 = tk.getImage("c:/sprite/fireball_4.png");
+		  java.awt.Image imgFB5 = tk.getImage("c:/sprite/fireball_5.png");
 		  // Image is load on first use.
 		  
 		  MediaTracker mt = new MediaTracker(this);
@@ -146,7 +139,11 @@ class ViewPanel extends JPanel implements Observer {
 		  mt.addImage(imgM4, 11);
 		  mt.addImage(imgGL, 12);
 		  mt.addImage(imgGU, 13);
-		  
+		  mt.addImage(imgFB1, 14);
+		  mt.addImage(imgFB2, 14);
+		  mt.addImage(imgFB3, 14);
+		  mt.addImage(imgFB4, 14);
+		  mt.addImage(imgFB5, 14);
 		  
 		  try {
 		     mt.waitForID(0);         // Image is in memory.
@@ -154,21 +151,12 @@ class ViewPanel extends JPanel implements Observer {
 		  
 		  catch(InterruptedException e) {} 
 		  
-		 
-		  
 		 System.out.println( "Id_Map = " + idMap);
-		 
-		// Sprite sprite = new Sprite( 40, 40, "BH", "c:/sprite/lorann_b.png", graphics );
-		// sprite.demarre();
-		 
-		 //	NW_MOBIL.
-		 //ArrayList<SpriteLOL> spriteList = this.viewFrame.getModel().GetSpriteList();
 		 
 		 if (spriteList != null){
 		 
 		 for (SpriteLOL lol : spriteList) {
 			  
-			 //System.out.println(lol.getX()+"/"+  lol.getY()+lol.getType());
 			  if(lol.getType().equals( "B")){
 			  graphics.drawImage(imgB, lol.getX()*32, lol.getY()*32, viewFrame);
 			  }
@@ -212,11 +200,35 @@ class ViewPanel extends JPanel implements Observer {
 			  }
 			  else if(lol.getType().equals("GU"))
 				  graphics.drawImage(imgGU, lol.getX()*32,lol.getY()*32 , viewFrame);
+			  else if(lol.getType().equals("FB1"))
+			      {
+			  graphics.drawImage(imgFB1, lol.getX()*32,lol.getY()*32 , viewFrame);
+			  this.viewFrame.getModel().FireballManager();
+			     }
+			  else if(lol.getType().equals("FB2"))
+			      {
+			  graphics.drawImage(imgFB2, lol.getX()*32,lol.getY()*32 , viewFrame);
+			  this.viewFrame.getModel().FireballManager();
+			    }
+			  else if(lol.getType().equals("FB3"))
+			    {
+			   graphics.drawImage(imgFB3, lol.getX()*32,lol.getY()*32 , viewFrame);
+			      this.viewFrame.getModel().FireballManager();
+			     }
+			     else if(lol.getType().equals("FB4"))
+			      {
+			      graphics.drawImage(imgFB4, lol.getX()*32,lol.getY()*32 , viewFrame);
+			      this.viewFrame.getModel().FireballManager();
+			     }
+			     else if(lol.getType().equals("FB5"))
+			      {
+			      graphics.drawImage(imgFB5, lol.getX()*32,lol.getY()*32 , viewFrame);
+			      this.viewFrame.getModel().FireballManager();
+			     }
 
 		 }
-	
 			  //	Same for Movable sprite
-			  
+
 			for (SpriteLOL lol : spriteList) {
 				  if(lol.getType().equals("L"))
 				  {
@@ -224,5 +236,5 @@ class ViewPanel extends JPanel implements Observer {
 				  }
 			}
 		 }
-}
+	}
 }

@@ -1,9 +1,17 @@
 package model;
 
-public class SpriteLOL {	
+public class SpriteLOL {
+	
     String Type;
     int X;
     int Y;
+  /**
+  * Object memorize Sprite 
+  * 
+  * @param type
+  * @param x
+  * @param y
+  */
     public SpriteLOL(String type, int x, int y)
     {
         Type=type;

@@ -1,4 +1,3 @@
-
 package model;
 
 import java.sql.Connection;
@@ -22,15 +21,21 @@ public class Model extends Observable implements IModel{
 /**
  * 1. Initialization 
  */
-	/** The message. */
+	/** The message */
 	private String message;
 	
-	public ArrayList<String> spritelist = new ArrayList<String>();
 	
 	public ArrayList<SpriteLOL> spriteLOLlist = new ArrayList<SpriteLOL>();
 
 	private int score;
+	
 	private int IDmap;
+	
+	 private int lastLoranndeltaX = 0;
+	 private int lastLoranndeltaY = 0;
+	 
+	 private int fireballDeltaX = 0;
+	 private int fireballDeltaY = 0;
 
 	public int getIDmap() {
 		return IDmap;
@@ -47,8 +52,7 @@ public class Model extends Observable implements IModel{
 		IDmap = iDmap;
 		  
 		if (change == true){
-		spritelist = getSpriteList( );
-		//	NW_MOBIL.
+		
 		spriteLOLlist = getSpriteLOLList( );
 		score = 0;
 		this.setChanged();
@@ -61,7 +65,6 @@ public class Model extends Observable implements IModel{
 	public Model() {
 		this.message = "";
 	}
-
 /**
 * getter : Write a message
 *
@@ -71,7 +74,7 @@ public class Model extends Observable implements IModel{
 		return this.message;
 	}
 /**
-* Sets the message.
+* Set the message.
 *
 * @param message
 *          the new message
@@ -82,47 +85,11 @@ public class Model extends Observable implements IModel{
 		this.notifyObservers();
 	}
 
-	public ArrayList<SpriteLOL> GetSpriteList(){
-		ArrayList<SpriteLOL> A = new ArrayList<SpriteLOL>();
-		
-		try {
-			Connection cnx = jpublankprojectDB();
-			
-		    Statement stmt = null;
-		    String query = "select ID_Object, ID_Map, ID_Type, " +
-		                   "AXIS_X, AXIS_Y " +
-		                   "from map WHERE ID_Map =" + Integer.toString(IDmap);
-	        stmt = cnx.createStatement();
-	        ResultSet rs = stmt.executeQuery(query);
-
-	        while (rs.next()) {
-	        	
-	            A.add(new SpriteLOL(rs.getString("ID_Type").trim(),rs.getInt("AXIS_X"),rs.getInt("AXIS_Y")));
-
-	        }
-		}
-	        catch (final SQLException e) {
-				e.printStackTrace();
-			}
-		return A;
-		}
-
-	public ArrayList<SpriteLOL> GetSpriteLOLList(){
-		
-		
-		ArrayList<SpriteLOL> A = spriteLOLlist;
-		return A;
-		}
-
-	/**
-	 * 2. Display Map
-	 *
-	 * @see contract.IModel#getObservable()
-	 */
-	public Observable getObservable() {
-		return this;
-	}
-
+/**
+* 
+*
+* @see contract.IModel#getObservable()
+*/
 	public  Connection jpublankprojectDB(){
 		
 		try{
@@ -147,51 +114,46 @@ public class Model extends Observable implements IModel{
 		return null;
 	}
 /**
+ * 2. Display Map
  * 
- * @return A
- */
-	private ArrayList<String> getSpriteList() {
-		  
-		  ArrayList<String> A = new ArrayList<String>();
-		  ArrayList<Integer> X = new ArrayList<Integer>();
-		  ArrayList<Integer> Y = new ArrayList<Integer>();
+* Get the Level Collection Sprite 
+*/
+	
+public ArrayList<SpriteLOL> GetSpriteLOLList(){
+		
+		ArrayList<SpriteLOL> A = spriteLOLlist;
+		return A;
+		}
+	
+	public Observable getObservable() {
+		return this;
+	}
+		public ArrayList<SpriteLOL> GetSpriteList(){
+			ArrayList<SpriteLOL> A = new ArrayList<SpriteLOL>();
+			
+			try {
+				Connection cnx = jpublankprojectDB();
+				
+			    Statement stmt = null;
+			    String query = "select ID_Object, ID_Map, ID_Type, " +
+			                   "AXIS_X, AXIS_Y " +
+			                   "from map WHERE ID_Map =" + Integer.toString(IDmap);
+		        stmt = cnx.createStatement();
+		        ResultSet rs = stmt.executeQuery(query);
 
-		  try {
-		   Connection cnx = jpublankprojectDB();
+		        while (rs.next()) {
+		        	
+		            A.add(new SpriteLOL(rs.getString("ID_Type").trim(),rs.getInt("AXIS_X"),rs.getInt("AXIS_Y")));
 
-		   Statement stmt = null;
-		   String query = "select ID_Object, ID_Map, ID_Type, AXIS_X, AXIS_Y " + 
-		         "from map WHERE ID_Map = " + Integer.toString( IDmap );
-		   stmt = cnx.createStatement();
-		   ResultSet rs = stmt.executeQuery(query);
-
-		   while (rs.next()) {
-
-		    A.add(rs.getString("ID_Type").trim());
-		    X.add(rs.getInt("AXIS_X"));
-		    Y.add(rs.getInt("AXIS_Y"));
-
-		   }
-		  } catch (final SQLException e) {
-		   e.printStackTrace();
-		  }
-		  System.out.println("Model.getSpriteList() : IDmap = " + IDmap + ", Nb Sprites = " + A.size());
-		  
-		  spritelist = A;
-		  //spritelistX = X;
-		  //spritelistY = Y;
-		  
-		  // Indicate that the object has changed to all Observers.
-		  //this.setChanged();
-		  //this.notifyObservers();
-		  
-		  //System.out.println( "Model.GetSpriteList() : Nb d'observateurs = " + this.countObservers() );
-		  
-		  return A;
-		 }
-
+		        }
+			}
+		        catch (final SQLException e) {
+					e.printStackTrace();
+				}
+			return A;
+			}
 /**
- * 
+ * Private method : Get the Level Collection Sprite
  * @return A
  */
 	private ArrayList<SpriteLOL> getSpriteLOLList() {
@@ -218,108 +180,107 @@ public class Model extends Observable implements IModel{
 				e.printStackTrace();
 			}
 		return A;
-		 
-	
-	
 	}
 /**
  * 3. Movement Sprite
- * 
  * 
  * Movement Lorann + changment Purse + Changment Gate
  * @param deltaX 
  * @param deltaY
  */
 	public void setLorannMove(int deltaX, int deltaY ) {
-		
-		 for (SpriteLOL lol : spriteLOLlist) {
 			 
-			  if ( lol.getType().equals( "L")) {	//	Wee find Lorann.
-				  
-				System.out.println("Model.setLorannMove() - Lorann found.");
+			  SpriteLOL lol = getSpriteByType("L"); {	//	We find Lorann.
+			if(lol != null)              
+				  {
 				
 				int x = lol.getX();
-				int y = lol.getY();
+				int y = lol.getY();  //Take the position of Lorann
 				
-				//	Find the sprite in the destination position.
+				  //	Search the sprite in the destination position.
 				SpriteLOL spriteInCase = getSpriteByPosition( x + deltaX, y + deltaY );
 				
 				if (spriteInCase == null)		//	Destination is free.
 					{
 					lol.setX( x+deltaX );
-					lol.setY( y+deltaY );
+					lol.setY( y+deltaY );     //Movement
 					
-					this.setChanged();
-					this.notifyObservers();
+					lastLoranndeltaX = deltaX;
+				    lastLoranndeltaY = deltaY;
+				     
+					this.setChanged();     // alert : the model has changed
+					this.notifyObservers();   // and then inform the observer
   				    }
 				else{
-					//	Destination is not free.
+					//	Destination is not free // Collision detection
 					if ( spriteInCase.Type.equals("P") )	//	Lorann meet a Purse. 
 						{
 						//	Put the sprite out of the windows drawing zone.
 						spriteInCase.X = 1000;
-						spriteInCase.Y = 1000;
+						spriteInCase.Y = 1000;    // purse: Out display zone
 
 						lol.setX( x+deltaX );
-						lol.setY( y+deltaY );
+						lol.setY( y+deltaY );    //Move Lorann
 						
-						score += 1000;
+						lastLoranndeltaX = deltaX;
+					    lastLoranndeltaY = deltaY;
+					     
+						score += 1000;  // incrementation score
 						
 						this.setChanged();
 						this.notifyObservers();
 					}
-					
 					else if ( spriteInCase.Type.equals("CB") )	//	Lorann meet a Crystal_Ball. 
 					{
 					//	Put the sprite out of the windows drawing zone.
 					spriteInCase.X = 1000;
-					spriteInCase.Y = 1000;
+					spriteInCase.Y = 1000;     // Crystall ball : out of the display zone
 
 					lol.setX( x+deltaX );
-					lol.setY( y+deltaY );
+					lol.setY( y+deltaY );    //Move lorann 
 					
-					//method research gate_closed 
-					SpriteLOL gateLocked = getSpriteByType("GL");
+					lastLoranndeltaX = deltaX;
+				    lastLoranndeltaY = deltaY;
+				     
 					
-					gateLocked.Type = "GU";
-					score += 2000;
+					SpriteLOL gateLocked = getSpriteByType("GL"); //method research gate_closed 
+					
+					gateLocked.Type = "GU";   //Transform Locked Gate in Open Gate
+					score += 2000;     
 					
 					this.setChanged();
 					this.notifyObservers();
-					
 				}
 					else if(spriteInCase.Type.equals("GU") || spriteInCase.Type.equals("M1") || spriteInCase.Type.equals("M2") || spriteInCase.Type.equals("M3") || spriteInCase.Type.equals("M4"))
 					{
-						System.out.println("map 0 ");
-					IDmap = 0;
+					IDmap = 0;   //Initialize game / Game Over
 					
 					if(spriteInCase.Type.equals("GU")) score += 2000;
 					
 					this.setChanged();
 					this.notifyObservers();
-					}
-					
+					}	
 				}	
-				break;
+				  }
 			 }		  
 		 }
-	}
 /**
- * Search by Position
+ * Search and return sprite to Position
  * @param X
  * @param Y
  * @return
  */
 	private SpriteLOL getSpriteByPosition( int X, int Y ){
 	
-		for (SpriteLOL lol : spriteLOLlist) {	
-			int x = lol.getX();
+		for (SpriteLOL lol : spriteLOLlist) { //Search in spriteList
+			
+			int x = lol.getX();     
 			int y = lol.getY();
+			
 			if ( (X == x) && (Y == y) )	return lol;
 			}
 		return null;
 	}
-	
 	/**
 	 * Search by Sprite Type
 	 * @param Type
@@ -334,8 +295,58 @@ public class Model extends Observable implements IModel{
 			}
 		return null;
 	}
-	
+/**
+* Fireball Movement
+* 
+*/
+	public void FireballManager( )
+	{ 
+	//  System.out.println("FireballManager()" );
+	 
+	 SpriteLOL fb = getSpriteByType( "FB1" );
+	 if (fb == null ) fb = getSpriteByType( "FB2" );
+	 if (fb == null ) fb = getSpriteByType( "FB3" );
+	 if (fb == null ) fb = getSpriteByType( "FB4" );
+	 if (fb == null ) fb = getSpriteByType( "FB5" );       // Searching Fireball Type 
+	 
+	 if ( fb == null )
+	  {
+	  SpriteLOL lorann = getSpriteByType( "L" );  // Create Fireball
+	  
+	  if ( lorann != null )        // Search for the position of Lorann
+	   {
+	   fireballDeltaX = lastLoranndeltaX;
+	   fireballDeltaY = lastLoranndeltaY;
+	   
+	   fb = new SpriteLOL( "FB1", lorann.X, lorann.Y );   // Create Fireball in position of Lorann
+	   spriteLOLlist.add( fb ); // Add to Sprite List
+	   }
+	  }
+	 
+	 if ( fb.Type.equals("FB1") )  fb.Type = "FB2";
+	 else if ( fb.Type.equals("FB2") ) fb.Type = "FB3";
+	 else if ( fb.Type.equals("FB3") ) fb.Type = "FB4";
+	 else if ( fb.Type.equals("FB4") ) fb.Type = "FB5";
+	 else if ( fb.Type.equals("FB5") ) fb.Type = "FB1";     // Change the appearence of the fireball
+	// Look for the destination position
+	 SpriteLOL spriteInCase = getSpriteByPosition( fb.X + fireballDeltaX, fb.Y + fireballDeltaY ); 
 
+	 if ( spriteInCase != null )  // Tile is not free
+	  {
+	  if ( spriteInCase.Type.equals("L") ) // If Lorann
+	   {
+	   spriteLOLlist.remove( fb );
+	   return;     // Destroy Fireball
+	   }
+	   // TODO Monster case.  // Destroy also if a monster
+	  else{
+	   fireballDeltaX = -fireballDeltaX;
+	   fireballDeltaY = -fireballDeltaY;   //Change the sens of the movement
+	   }
+	  }
+	 fb.X += fireballDeltaX;
+	 fb.Y += fireballDeltaY;    // Move of the fireball
+	}
 }
 
 
