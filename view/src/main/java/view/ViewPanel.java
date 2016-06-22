@@ -117,6 +117,11 @@ class ViewPanel extends JPanel implements Observer {
 		  java.awt.Image imgM4 = tk.getImage("C:/sprite/monster_4.png");
 		  java.awt.Image imgGL = tk.getImage("C:/sprite/gate_closed.png");
 		  java.awt.Image imgGU = tk.getImage("c:/sprite/gate_open.png");
+		  java.awt.Image imgFB1 = tk.getImage("c:/sprite/fireball_1.png");
+		  java.awt.Image imgFB2 = tk.getImage("c:/sprite/fireball_2.png");
+		  java.awt.Image imgFB3 = tk.getImage("c:/sprite/fireball_3.png");
+		  java.awt.Image imgFB4 = tk.getImage("c:/sprite/fireball_4.png");
+		  java.awt.Image imgFB5 = tk.getImage("c:/sprite/fireball_5.png");
 		  // Image is load on first use.
 		  
 		  MediaTracker mt = new MediaTracker(this);
@@ -134,6 +139,11 @@ class ViewPanel extends JPanel implements Observer {
 		  mt.addImage(imgM4, 11);
 		  mt.addImage(imgGL, 12);
 		  mt.addImage(imgGU, 13);
+		  mt.addImage(imgFB1, 14);
+		  mt.addImage(imgFB2, 14);
+		  mt.addImage(imgFB3, 14);
+		  mt.addImage(imgFB4, 14);
+		  mt.addImage(imgFB5, 14);
 		  
 		  try {
 		     mt.waitForID(0);         // Image is in memory.
@@ -190,6 +200,31 @@ class ViewPanel extends JPanel implements Observer {
 			  }
 			  else if(lol.getType().equals("GU"))
 				  graphics.drawImage(imgGU, lol.getX()*32,lol.getY()*32 , viewFrame);
+			  else if(lol.getType().equals("FB1"))
+			      {
+			  graphics.drawImage(imgFB1, lol.getX()*32,lol.getY()*32 , viewFrame);
+			  this.viewFrame.getModel().FireballManager();
+			     }
+			  else if(lol.getType().equals("FB2"))
+			      {
+			  graphics.drawImage(imgFB2, lol.getX()*32,lol.getY()*32 , viewFrame);
+			  this.viewFrame.getModel().FireballManager();
+			    }
+			  else if(lol.getType().equals("FB3"))
+			    {
+			   graphics.drawImage(imgFB3, lol.getX()*32,lol.getY()*32 , viewFrame);
+			      this.viewFrame.getModel().FireballManager();
+			     }
+			     else if(lol.getType().equals("FB4"))
+			      {
+			      graphics.drawImage(imgFB4, lol.getX()*32,lol.getY()*32 , viewFrame);
+			      this.viewFrame.getModel().FireballManager();
+			     }
+			     else if(lol.getType().equals("FB5"))
+			      {
+			      graphics.drawImage(imgFB5, lol.getX()*32,lol.getY()*32 , viewFrame);
+			      this.viewFrame.getModel().FireballManager();
+			     }
 
 		 }
 			  //	Same for Movable sprite

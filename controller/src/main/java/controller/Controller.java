@@ -117,10 +117,8 @@ private int LevelId;
 			case DownRight:
 				this.model.setLorannMove( 1, 1 );
 				break;
-			default:
-				break;
 			case Fireball:
-				System.out.println("Fireballllllllll");
+				this.model.FireballManager();
 				break;
 		}
 	}

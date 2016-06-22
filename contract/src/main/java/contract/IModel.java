@@ -46,6 +46,7 @@ public interface IModel<SpriteLOL> {
 * @param i
 * @param j
  */
-	
 	public void setLorannMove(int i, int j);
+	
+	public void FireballManager();
 }
